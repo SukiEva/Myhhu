@@ -1,13 +1,12 @@
 package top.sukiu.myhhu.activity
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.os.Build
-import android.os.Bundle
-import android.os.StrictMode
+import android.os.*
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.Animation
@@ -25,7 +24,7 @@ import top.sukiu.myhhu.bean.Grades
 import top.sukiu.myhhu.bean.MD5
 import top.sukiu.myhhu.bean.Rank
 import java.io.InputStream
-
+import java.util.concurrent.TimeUnit
 
 
 class LoginActivity : AppCompatActivity() {
@@ -52,9 +51,13 @@ class LoginActivity : AppCompatActivity() {
 
         sp = this.getSharedPreferences("userinfo", Context.MODE_PRIVATE)
         hasInfo()
-        loadingCaptchaPic()
 
-
+        try {
+            loadingCaptchaPic()
+        } catch (e: Exception) {
+            toast("教务系统崩溃啦>_<")
+            finish()
+        }
         askGrades.setOnClickListener { loginButtonClickHandler() }
         refreshButton.setOnClickListener { refreshButtonClickHandler() }
     }
@@ -67,10 +70,14 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-
+    @SuppressLint("HandlerLeak")
+    @Suppress("DEPRECATION")
     private fun loadingCaptchaPic() { // show yzm by bitmap
-        client = OkHttpClient().newBuilder() // store cookies
+        client = OkHttpClient().newBuilder()
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(10, TimeUnit.SECONDS)
             .cookieJar(object : CookieJar {
+                // store cookies
                 private val cookieStore: HashMap<String, List<Cookie>> = HashMap()
                 override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
                     cookieStore[url.host] = cookies
@@ -82,41 +89,45 @@ class LoginActivity : AppCompatActivity() {
                     return cookies ?: ArrayList()
                 }
             }).build()
-        var pos = 0
-        var time = 0
         //load yzm captcha
-        while (time < 15) {
-            homeUrl = homeUrls[pos]
-            try {
-                val ImgUrl = homeUrl + "img/captcha.jpg"
-                val request = Request.Builder()
-                    .removeHeader("User-Agent")
-                    .addHeader(
-                        "User-Agent",
-                        "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4209.2 Safari/537.36"
-                    )
-                    .url(ImgUrl)
-                    .build()
-                var captchaPic: Bitmap?
-                Thread(
-                    object : Runnable {
-                        override fun run() {
-                            val response = client!!.newCall(request).execute()
-                            val `is`: InputStream = response.body!!.byteStream()
-                            captchaPic = BitmapFactory.decodeStream(`is`)
-                            checkCodePicture?.post { checkCodePicture!!.setImageBitmap(captchaPic) }
-                            return
-                        }
-                    }).start()
-                return
-            } catch (e: Exception) {
-                AnkoLogger<LoginActivity>().info { "Load CaptchaPic Error: " + e }
-                pos++
-                if (pos >= 3) pos = 0
-                time++
+        homeUrl = homeUrls[0]
+        val ImgUrl = homeUrl + "img/captcha.jpg"
+        val request = Request.Builder()
+            .removeHeader("User-Agent")
+            .addHeader(
+                "User-Agent",
+                "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4209.2 Safari/537.36"
+            )
+            .url(ImgUrl)
+            .build()
+        var captchaPic: Bitmap?
+        val handler: Handler = object : Handler() {
+            override fun handleMessage(msg: Message) {
+                super.handleMessage(msg)
+                if (msg.what == 404) {
+                    toast("教务系统崩溃啦>_<")
+                }
             }
         }
-        toast("教务系统崩溃啦！！！[○･｀Д´･ ○]")
+        Thread(
+            object : Runnable {
+                override fun run() {
+                    try {
+                        val response = client!!.newCall(request).execute()
+                        val `is`: InputStream = response.body!!.byteStream()
+                        captchaPic = BitmapFactory.decodeStream(`is`)
+                        checkCodePicture?.post { checkCodePicture!!.setImageBitmap(captchaPic) }
+                        return
+                    } catch (e: Exception) {
+                        AnkoLogger<LoginActivity>().info { "Connect failed: " + e.stackTrace }
+                        e.printStackTrace()
+                        val meg = Message()
+                        meg.what = 404
+                        handler.sendMessage(meg)
+                        return
+                    }
+                }
+            }).start()
         return
     }
 
@@ -186,7 +197,7 @@ class LoginActivity : AppCompatActivity() {
                 loadingCaptchaPic()
             }
         } catch (e: Exception) {
-            AnkoLogger<LoginActivity>().info { "Login Error: " + e.stackTrace }
+            AnkoLogger<LoginActivity>().info { "Login Failed: " + e.stackTrace }
             e.printStackTrace()
             toast("Login failed. Please try again!")
             loginYzm.setText("")
@@ -221,7 +232,7 @@ class LoginActivity : AppCompatActivity() {
         val response = client!!.newCall(request).execute()
         rankhtml = response.body?.string()
         val parse = Jsoup.parse(rankhtml)
-        while (cnt<=10){
+        while (cnt <= 10) {
             try {
                 val infos = parse.getElementsByClass("report1_$cnt")
                 //[序号，学号，姓名，专业，专业人数，平均绩点，平均成绩，平均排名，推优绩点，推优成绩，推优排名]
@@ -245,7 +256,7 @@ class LoginActivity : AppCompatActivity() {
                 cnt++
             }
         }
-        return Rank("Error","Error",999,5.0,100.0,1,5.0,100.0,1)
+        return Rank("Error", "Error", 999, 5.0, 100.0, 1, 5.0, 100.0, 1)
     }
 
     private fun getGrades(): MutableList<Course>? {
@@ -284,10 +295,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     @Suppress("DEPRECATION")
-    private fun TransportStatusBar(){
+    private fun TransportStatusBar() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.setStatusBarColor(Color.TRANSPARENT)
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
 
 }

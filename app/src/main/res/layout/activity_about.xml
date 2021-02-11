@@ -44,7 +44,7 @@
                 android:layout_height="match_parent" android:layout_weight="1" android:gravity="center">
             <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" app:srcCompat="@drawable/ic_telegram"
+                    android:layout_height="wrap_content" app:srcCompat="@drawable/about_problem"
                     android:id="@+id/problem"
                     android:layout_weight="0"/>
             <TextView
@@ -59,7 +59,7 @@
                 android:layout_height="match_parent" android:layout_weight="1" android:gravity="center">
             <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" app:srcCompat="@drawable/ic_github"
+                    android:layout_height="wrap_content" app:srcCompat="@drawable/about_github"
                     android:id="@+id/sourcecode"
                     android:layout_weight="0"/>
             <TextView

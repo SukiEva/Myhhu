@@ -64,7 +64,6 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
                         val meg = Message()
                         meg.what = 111
                         meg.obj = one
-                        //println(one)
                         handler.sendMessage(meg)
                     } catch (e: Exception) {
                         AnkoLogger<HomeActivity>().info { "Yiyan Error:" + e.stackTrace }

@@ -18,8 +18,8 @@ class AboutActivity : AppCompatActivity() {
         setSupportActionBar(about_bar)
         supportActionBar?.title = "About"
 
-        problem.setOnClickListener { browse("") }
-
+        problem.setOnClickListener { browse("https://github.com/SukiEva/Myhhu/issues") }
+        sourcecode.setOnClickListener { browse("https://github.com/SukiEva/Myhhu") }
     }
 
     @Suppress("DEPRECATION")
