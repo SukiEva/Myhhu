@@ -1,0 +1,193 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".activity.ShowRankActivity" android:orientation="vertical" android:background="@color/bg"
+              android:gravity="center"
+              android:fitsSystemWindows="true">
+
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize" android:id="@+id/rank_bar" android:gravity="center"
+            android:background="@android:color/white" app:navigationIcon="@drawable/toolbar_back"
+            app:titleTextColor="@color/toolbar"/>
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/rank_header" android:id="@+id/imageView9"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:showDividers="middle|beginning|end"
+            android:divider="@drawable/rank_divider">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="@string/major"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView8" android:layout_weight="1"
+                    android:drawableLeft="@drawable/rank_major" android:gravity="left|center_vertical"
+                    android:textSize="18sp" android:fontFamily="sans-serif-black"/>
+            <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent" android:id="@+id/major" android:layout_weight="1"
+                    tools:text="计算机科学与技术" android:gravity="center" android:textColor="#090909"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="@string/majornum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView9" android:layout_weight="1"
+                    android:drawableLeft="@drawable/rank_nums" android:gravity="left|center_vertical"
+                    android:textSize="18sp" android:fontFamily="sans-serif-black"/>
+            <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent" android:id="@+id/majornum" android:layout_weight="1"
+                    tools:text="200" android:layout_gravity="center" android:gravity="center"
+                    android:textColor="#E53935"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="@string/rankgrade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView24" android:layout_weight="1"
+                    android:drawableLeft="@drawable/rank_grades" android:gravity="left|center_vertical"
+                    android:textSize="18sp"
+                    android:fontFamily="sans-serif-black"/>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent" android:layout_weight="1">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                    <TextView
+                            android:text="@string/ava"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:layout_weight="1"
+                            android:gravity="center" android:textSize="16sp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/avagrade"
+                            android:layout_weight="1" tools:text="90" android:textColor="#48C140"
+                            android:gravity="center"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                    <TextView
+                            android:text="@string/excellent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:layout_weight="1"
+                            android:gravity="center" android:textSize="16sp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="23dp" android:id="@+id/grade"
+                            android:layout_weight="1" tools:text="90" android:textColor="#48C140"
+                            android:gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="@string/rankgpa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView21" android:layout_weight="1"
+                    android:drawableLeft="@drawable/rank_gpa" android:gravity="left|center_vertical"
+                    android:textSize="18sp" android:fontFamily="sans-serif-black"/>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent" android:layout_weight="1">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:layout_weight="1"
+                            android:gravity="center" android:text="@string/ava" android:textSize="16sp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/avagpa"
+                            android:layout_weight="1" tools:text="5.0" android:textColor="#48C140"
+                            android:gravity="center"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:layout_weight="1"
+                            android:gravity="center" android:text="@string/excellent" android:textSize="16sp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="23dp" android:id="@+id/gpa"
+                            android:layout_weight="1" tools:text="5.0" android:textColor="#48C140"
+                            android:gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:text="@string/rankrank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView22" android:layout_weight="1"
+                    android:drawableLeft="@drawable/rank_rank" android:gravity="left|center_vertical"
+                    android:textSize="18sp" android:fontFamily="sans-serif-black"/>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent" android:layout_weight="1">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:layout_weight="1"
+                            android:gravity="center" android:text="@string/ava" android:textSize="16sp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="23dp" android:id="@+id/avarank"
+                            android:layout_weight="1" tools:text="200" android:textColor="#48C140"
+                            android:gravity="center"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:layout_weight="1"
+                            android:gravity="center" android:text="@string/excellent" android:textSize="16sp"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/rank"
+                            android:layout_weight="1" tools:text="200" android:textColor="#48C140"
+                            android:gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

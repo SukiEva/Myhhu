@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Myhhu</string>
+    <string name="loginNum">学号</string>
+    <string name="loginPassword">密码</string>
+    <string name="loginYzm">验证码</string>
+    <string name="remember">记住信息</string>
+    <string name="askGrades">登录</string>
+    <string name="see_more"></string>
+    <string name="test">测试</string>
+    <string name="major">专业</string>
+    <string name="majornum">专业人数</string>
+    <string name="rankgrade">成绩</string>
+    <string name="rankgpa">绩点</string>
+    <string name="rankrank">排名</string>
+    <string name="ava">平均</string>
+    <string name="excellent">推优</string>
+    <string name="schedule">此功能请去应用商店下载
+        Wakeup课程表\n由苏大一位学长开发的开源app\n开源地址：https://github.com/YZune/WakeupSchedule_Kotlin
+    </string>
+    <string name="about">Developed by SukiEva</string>
+    <string name="oneyan">蓦然回首，那人却在，灯火阑珊处</string>
+</resources>

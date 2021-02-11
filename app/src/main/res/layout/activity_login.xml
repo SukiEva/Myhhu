@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+                                              xmlns:app="http://schemas.android.com/apk/res-auto"
+                                              xmlns:tools="http://schemas.android.com/tools"
+                                              android:layout_width="match_parent"
+                                              android:layout_height="match_parent"
+                                              android:gravity="center_horizontal"
+                                              android:orientation="vertical"
+                                              android:fitsSystemWindows="true"
+                                              tools:context=".activity.LoginActivity" android:background="@color/bg">
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize" android:id="@+id/login_bar"
+            android:background="@android:color/white" app:navigationIcon="@drawable/toolbar_back"
+            app:titleTextColor="@color/toolbar"/>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:gravity="center_horizontal|center_vertical">
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/imageView2"
+                tools:srcCompat="@drawable/login_header" app:srcCompat="@drawable/login_header" android:minHeight="200dp"
+                android:minWidth="200dp"/>
+    </LinearLayout>
+    <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/tableLayout"
+    >
+
+        <TableRow android:layout_width="wrap_content" android:layout_height="match_parent">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:gravity="center">
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/loginNum" android:layout_weight="1"
+                        android:hint="@string/loginNum" android:drawableLeft="@drawable/login_user"/>
+            </LinearLayout>
+        </TableRow>
+        <TableRow android:layout_width="wrap_content" android:layout_height="match_parent">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:ems="10"
+                        android:id="@+id/loginPassword" android:layout_weight="1"
+                        android:hint="@string/loginPassword" android:drawableLeft="@drawable/login_password"/>
+            </LinearLayout>
+        </TableRow>
+        <TableRow android:layout_width="wrap_content" android:layout_height="match_parent">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/checkCodePicture"
+                        android:layout_weight="1"/>
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:id="@+id/loginYzm" android:layout_weight="1" android:autofillHints=""
+                        android:hint="@string/loginYzm" android:inputType="text"/>
+                <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/refreshButton" android:background="#00FFFFFF"
+                        app:srcCompat="@drawable/login_refresh"/>
+            </LinearLayout>
+        </TableRow>
+        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:gravity="center">
+                <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" android:id="@+id/rememberInfo" android:layout_weight="1"
+                        android:text="@string/remember"/>
+                <Button
+                        android:text="@string/askGrades"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content" android:id="@+id/askGrades"
+                        style="@style/Widget.AppCompat.Button.Colored" android:layout_marginRight="80dp"/>
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
