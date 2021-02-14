@@ -119,6 +119,8 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
             HomeEntity(headerTitle = "基础功能"),
             HomeEntity("成绩", LoginActivity::class.java, R.drawable.home_course),
             HomeEntity("课表", ScheduleActivity::class.java, R.drawable.home_schedule),
+            HomeEntity("服务", ServiceActivity::class.java, R.drawable.home_service),
+            HomeEntity("打卡", ClockInActivity::class.java, R.drawable.home_daka),
             HomeEntity(headerTitle = "快捷入口"),
             HomeEntity("奥蓝系统", HomeActivity::class.java, R.drawable.home_alxt),
             HomeEntity("教务系统", HomeActivity::class.java, R.drawable.home_jwxt),

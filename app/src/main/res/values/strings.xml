@@ -5,7 +5,6 @@
     <string name="loginYzm">验证码</string>
     <string name="remember">记住信息</string>
     <string name="askGrades">登录</string>
-    <string name="see_more"></string>
     <string name="test">测试</string>
     <string name="major">专业</string>
     <string name="majornum">专业人数</string>
@@ -19,4 +18,25 @@
     </string>
     <string name="about">Developed by SukiEva</string>
     <string name="oneyan">蓦然回首，那人却在，灯火阑珊处</string>
+    <string name="daka">打卡</string>
+    <string name="setinfo">设置</string>
+    <string name="account">学号</string>
+    <string name="password">密码(信息门户)</string>
+    <string name="wid">wid</string>
+    <string name="Name">姓名</string>
+    <string name="SelfAccount">身份证号</string>
+    <string name="Institute">学院</string>
+    <string name="Grade">年级</string>
+    <string name="Classes">班级</string>
+    <string name="Major">专业</string>
+    <string name="Building">宿舍楼</string>
+    <string name="Room">宿舍号</string>
+    <string name="PhoneNum">手机号码</string>
+    <string name="Address">住址 如：江苏省,南京市,江宁区</string>
+    <string name="AtHome">在家</string>
+    <string name="AtSchool">在校</string>
+    <string name="PS">PS：住址分隔使用英文逗号</string>
+    <string name="clokin">请对照健康打卡填写\n</string>
+    <string name="SaveButton">保存</string>
+    <string name="wid_teach">wid获取教程</string>
 </resources>

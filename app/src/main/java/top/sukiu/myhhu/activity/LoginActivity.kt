@@ -52,12 +52,7 @@ class LoginActivity : AppCompatActivity() {
         sp = this.getSharedPreferences("userinfo", Context.MODE_PRIVATE)
         hasInfo()
 
-        try {
-            loadingCaptchaPic()
-        } catch (e: Exception) {
-            toast("教务系统崩溃啦>_<")
-            finish()
-        }
+        loadingCaptchaPic()
         askGrades.setOnClickListener { loginButtonClickHandler() }
         refreshButton.setOnClickListener { refreshButtonClickHandler() }
     }

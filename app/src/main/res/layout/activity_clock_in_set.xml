@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.ClockInSetActivity" android:orientation="vertical"
+        android:background="@android:color/white"
+        android:fitsSystemWindows="true">
+
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/white"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize" android:id="@+id/clock_in_set_bar"
+            app:navigationIcon="@drawable/toolbar_back" app:titleTextColor="@color/toolbar"/>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:gravity="center">
+            <TextView
+                    android:text="@string/clokin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/textView3" android:gravity="center"
+                    android:textColor="#D50000"/>
+            <TextView
+                    android:text="@string/wid_teach"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/wid_teach" android:gravity="center"
+                    android:textColor="@color/color_light_blue"/>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp">
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/account" android:hint="@string/account"
+                        android:inputType="number" android:drawableLeft="@drawable/clockin_account"
+                        android:textSize="15sp"
+                        android:textAllCaps="false" android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/password" android:hint="@string/password"
+                        android:drawableLeft="@drawable/clockin_password"
+                        android:textSize="15sp"
+                        android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/wid" android:hint="@string/wid"
+                        android:drawableLeft="@drawable/clockin_wid" android:textSize="15sp"
+                        android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/Name" android:hint="@string/Name"
+                        android:textSize="15sp" android:drawableLeft="@drawable/clockin_name"
+                        android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/SelfAccount"
+                        android:hint="@string/SelfAccount"
+                        android:textSize="15sp" android:drawableLeft="@drawable/clockin_selfaccount"
+                        android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/Institute"
+                        android:hint="@string/Institute"
+                        android:textSize="15sp" android:drawableLeft="@drawable/clockin_institute"
+                        android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/Grade" android:hint="@string/Grade"
+                        android:textSize="15sp" android:drawableLeft="@drawable/clockin_grade"
+                        android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/Major" android:hint="@string/Major"
+                        android:textSize="15sp" android:drawableLeft="@drawable/clockin_major"
+                        android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/Classes" android:hint="@string/Classes"
+                        android:textSize="15sp" android:drawableLeft="@drawable/clockin_class"
+                        android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/Building" android:hint="@string/Building"
+                        android:textSize="15sp" android:drawableLeft="@drawable/clockin_building"
+                        android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/Room" android:hint="@string/Room"
+                        android:textSize="15sp" android:drawableLeft="@drawable/clockin_room"
+                        android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/PhoneNum" android:hint="@string/PhoneNum"
+                        android:textSize="15sp" android:drawableLeft="@drawable/clockin_phone"
+                        android:drawablePadding="@dimen/dp_10"/>
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/Address" android:hint="@string/Address" android:textSize="15sp"
+                        android:drawableLeft="@drawable/clockin_address" android:drawablePadding="@dimen/dp_10"/>
+                <TextView
+                        android:text="@string/PS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/textView5" android:gravity="center"
+                        android:textSize="12sp" android:textColor="#D50000"/>
+            </LinearLayout>
+            <Button
+                    android:text="@string/SaveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/SaveButton"
+                    style="@style/Widget.AppCompat.Button.Colored"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

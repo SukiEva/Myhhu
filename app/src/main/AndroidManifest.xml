@@ -13,8 +13,20 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".activity.AboutActivity"
+        <activity android:name=".activity.ServiceActivity"
                   android:parentActivityName=".activity.HomeActivity">
+        </activity>
+        <activity
+                android:name=".activity.ClockInSetActivity"
+                android:parentActivityName=".activity.ClockInActivity">
+        </activity>
+        <activity
+                android:name=".activity.ClockInActivity"
+                android:parentActivityName=".activity.HomeActivity">
+        </activity>
+        <activity
+                android:name=".activity.AboutActivity"
+                android:parentActivityName=".activity.HomeActivity">
         </activity>
         <activity
                 android:name=".activity.ScheduleActivity"
