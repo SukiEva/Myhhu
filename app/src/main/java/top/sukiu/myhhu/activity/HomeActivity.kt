@@ -41,17 +41,17 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
 
     @SuppressLint("HandlerLeak")
     @Suppress("DEPRECATION")
-    private fun setOneyan() {
-        val handler:Handler = object :Handler(){
-            override fun handleMessage(msg: Message) {
-                super.handleMessage(msg)
-                if (msg.what == 111){
-                    supportActionBar?.subtitle = msg.obj.toString()
-                }
-                else
-                    supportActionBar?.subtitle = "所幸南风知我意，吹梦到西洲。"
-            }
+    private val handler: Handler = object : Handler() {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            if (msg.what == 111) {
+                supportActionBar?.subtitle = msg.obj.toString()
+            } else
+                supportActionBar?.subtitle = "所幸南风知我意，吹梦到西洲。"
         }
+    }
+
+    private fun setOneyan() {
         Thread(
             object : Runnable {
                 override fun run() {
@@ -61,13 +61,13 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
                             .timeout(2000)
                             .ignoreContentType(true)
                         val one = connect.get().text()
-                        val meg = Message()
+                        val meg = Message.obtain()
                         meg.what = 111
                         meg.obj = one
                         handler.sendMessage(meg)
                     } catch (e: Exception) {
                         AnkoLogger<HomeActivity>().info { "Yiyan Error:" + e.stackTrace }
-                        val meg = Message()
+                        val meg = Message.obtain()
                         meg.what = 112
                         handler.sendMessage(meg)
                         e.printStackTrace()

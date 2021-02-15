@@ -15,13 +15,14 @@
             android:theme="?attr/actionBarTheme"
             android:minHeight="?attr/actionBarSize" android:id="@+id/service_bar"
             app:navigationIcon="@drawable/toolbar_back" app:titleTextColor="@color/toolbar"/>
+    <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:id="@+id/progressBar" android:max="100" android:progress="0"
+            android:progressTint="@color/color_light_blue"/>
     <WebView
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:id="@+id/web">
     </WebView>
-    <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="3dip"
-            android:id="@+id/progressBar" android:max="100" android:progress="0" android:visibility="visible"
-            android:background="#FFFFFF" android:progressTint="@color/color_light_blue"/>
 </LinearLayout>

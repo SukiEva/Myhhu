@@ -45,12 +45,6 @@
                         android:textAllCaps="false" android:drawablePadding="@dimen/dp_10"/>
                 <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/password" android:hint="@string/password"
-                        android:drawableLeft="@drawable/clockin_password"
-                        android:textSize="15sp"
-                        android:drawablePadding="@dimen/dp_10"/>
-                <EditText
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" android:id="@+id/wid" android:hint="@string/wid"
                         android:drawableLeft="@drawable/clockin_wid" android:textSize="15sp"
                         android:drawablePadding="@dimen/dp_10"/>

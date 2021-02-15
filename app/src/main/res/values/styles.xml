@@ -8,7 +8,7 @@
     </style>
 
     <!-- 设置Toolbar 子标题subtitle标题字体的大小 -->
-    <style name="Toolbar.SubTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+    <style name="Toolbar.SubTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
         <item name="android:textSize">10sp</item><!--子标题字体大小-->
         <item name="android:textColor">@color/color_light_blue</item><!--子标题字体颜色-->
     </style>

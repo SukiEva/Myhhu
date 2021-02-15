@@ -33,7 +33,7 @@ class ClockInSetActivity : AppCompatActivity() {
     private fun ShowMessage() {
         sp!!.let {
             account.setText(it.getString("account", "").toString())
-            password.setText(it.getString("password", "").toString())
+            //password.setText(it.getString("password", "").toString())
             wid.setText(it.getString("wid", "").toString())
             Name.setText(it.getString("Name", "").toString())
             SelfAccount.setText(it.getString("SelfAccount", "").toString())
@@ -51,7 +51,7 @@ class ClockInSetActivity : AppCompatActivity() {
     private fun SaveButtonHandle() {
         val editor = sp!!.edit()
         editor.putString("account", account.text.toString())
-        editor.putString("password", password.text.toString())
+        //editor.putString("password", password.text.toString())
         editor.putString("wid", wid.text.toString())
         editor.putString("Name", Name.text.toString())
         editor.putString("SelfAccount", SelfAccount.text.toString())

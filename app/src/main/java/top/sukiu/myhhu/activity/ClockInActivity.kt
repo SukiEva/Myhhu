@@ -21,7 +21,6 @@ import kotlin.collections.HashMap
 class ClockInActivity : AppCompatActivity() {
 
     lateinit var account: String
-    lateinit var password: String
     lateinit var wid: String
     lateinit var Name: String //姓名
     lateinit var SelfAccount: String //身份证号
@@ -33,11 +32,8 @@ class ClockInActivity : AppCompatActivity() {
     lateinit var Room: String //宿舍号
     lateinit var PhoneNum: String //手机号码
     lateinit var Address: String //住址
-    lateinit var handler: Handler
     var flag: Boolean = false
-    val login_url = "http://ids.hhu.edu.cn/amserver/UI/Login"
     lateinit var daka_save_url: String
-    val init_form_api = "http://form.hhu.edu.cn/pdc/formDesignApi/initFormAppInfo"
     private var client: OkHttpClient? = null
     var sp: SharedPreferences? = null
     private var cookie: String? = null
@@ -57,11 +53,10 @@ class ClockInActivity : AppCompatActivity() {
         }
         sp = this.getSharedPreferences("dakainfo", Context.MODE_PRIVATE)
         checkDakaInfo()
-        dakaButton.setOnClickListener { login() }
+        dakaButton.setOnClickListener { dakaButtonHandle() }
         setButton.setOnClickListener { startActivity<ClockInSetActivity>() }
         at_home.setOnCheckedChangeListener { buttonView, isChecked -> atHomeButtonChange() }
         at_school.setOnCheckedChangeListener { buttonView, isChecked -> atSchoolButtonChange() }
-        handleHandle()
     }
 
     private fun atHomeButtonChange() {
@@ -76,23 +71,20 @@ class ClockInActivity : AppCompatActivity() {
 
     @SuppressLint("HandlerLeak")
     @Suppress("DEPRECATION")
-    private fun handleHandle() {
-        handler = object : Handler() {
-            override fun handleMessage(msg: Message) {
-                super.handleMessage(msg)
-                when (msg.what) {
-                    404 -> toast("登录失败")
-                    100 -> toast("开始打卡，请耐心等待")
-                    200 -> toast("打卡成功")
-                    300 -> toast("异常错误")
-                    500 -> toast("打卡失败")
-                }
+    private val handler: Handler = object : Handler() {
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            when (msg.what) {
+                100 -> toast("开始打卡，请耐心等待")
+                200 -> toast("打卡成功")
+                300 -> toast("服务器连接超时")
+                500 -> toast("打卡失败")
             }
         }
     }
 
 
-    private fun login() {
+    private fun dakaButtonHandle() {
         if (!flag) {
             toast("请补全打卡信息")
             return
@@ -118,40 +110,18 @@ class ClockInActivity : AppCompatActivity() {
                     return cookies ?: ArrayList()
                 }
             }).build()
-        val requestbody: RequestBody = FormBody.Builder()
-            .add("Login.Token1", account)
-            .add("Login.Token2", password)
-            .add("goto", "http://my.hhu.edu.cn/loginSuccess.portal")
-            .add("gotoOnFail", "http://my.hhu.edu.cn/loginFailure.portal")
-            .build()
-        val request = Request.Builder()
-            .removeHeader("User-Agent")
-            .addHeader(
-                "User-Agent",
-                "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4209.2 Safari/537.36"
-            )
-            .url(login_url)
-            .post(requestbody)
-            .build()
         Thread(
             object : Runnable {
                 override fun run() {
-                    val response = client!!.newCall(request).execute()
-                    val clockhtml = response.body?.string()
-                    if (clockhtml!!.contains("handleLoginSuccessed()")) {
-                        val meg = Message()
+                    try {
+                        val meg = Message.obtain()
                         meg.what = 100
                         handler.sendMessage(meg)
-                        try {
-                            daka()
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                            meg.what = 300
-                            handler.sendMessage(meg)
-                        }
-                    } else {
-                        val meg = Message()
-                        meg.what = 404
+                        daka()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        val meg = Message.obtain()
+                        meg.what = 300
                         handler.sendMessage(meg)
                     }
                 }
@@ -224,18 +194,7 @@ class ClockInActivity : AppCompatActivity() {
                 .add("TEXT_752063", "")
                 .build()
         }
-        val widbody = FormBody.Builder().add("selfFormWid", wid).build()
-        var request = Request.Builder()
-            .removeHeader("User-Agent")
-            .addHeader(
-                "User-Agent",
-                "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4209.2 Safari/537.36"
-            )
-            .url(init_form_api)
-            .post(widbody)
-            .build()
-        client!!.newCall(request).execute()
-        request = Request.Builder()
+        val request = Request.Builder()
             .removeHeader("User-Agent")
             .addHeader(
                 "User-Agent",
@@ -247,11 +206,11 @@ class ClockInActivity : AppCompatActivity() {
         val response = client!!.newCall(request).execute()
         val dakahtml = response.body?.string()
         if (dakahtml!!.contains("{\"result\":true}")) {
-            val meg = Message()
+            val meg = Message.obtain()
             meg.what = 200
             handler.sendMessage(meg)
         } else {
-            val meg = Message()
+            val meg = Message.obtain()
             meg.what = 500
             handler.sendMessage(meg)
         }
@@ -279,7 +238,6 @@ class ClockInActivity : AppCompatActivity() {
         }
         sp!!.let {
             account = it.getString("account", "").toString()
-            password = it.getString("password", "").toString()
             wid = it.getString("wid", "").toString()
             Name = it.getString("Name", "").toString()
             SelfAccount = it.getString("SelfAccount", "").toString()
@@ -292,7 +250,7 @@ class ClockInActivity : AppCompatActivity() {
             PhoneNum = it.getString("PhoneNum", "").toString()
             Address = it.getString("Address", "").toString()
         }
-        if (account == "" || password == "" || wid == "" || Name == "" ||
+        if (account == "" || wid == "" || Name == "" ||
             SelfAccount == "" || Institute == "" || Grade == "" || Major == "" ||
             Classes == "" || Building == "" || Room == "" || PhoneNum == ""
         ) {
