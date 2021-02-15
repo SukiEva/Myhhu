@@ -6,7 +6,9 @@ App for hhuers based on Kotlin
 
 1. 查询成绩
 2. 拉取Wakeup查询课表
-3. 常用网站入口
+3. 官网校园服务
+4. 一键打卡
+5. 常用网站入口
 
 ### 计划功能
 
