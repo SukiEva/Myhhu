@@ -132,6 +132,7 @@ class ClockInActivity : AppCompatActivity() {
 
     private fun daka() {
         val currdate = getDate()
+        //println(currdate)
         val requestBody: RequestBody
         if (at_home.isChecked) {
             requestBody = FormBody.Builder()
@@ -205,6 +206,7 @@ class ClockInActivity : AppCompatActivity() {
             .build()
         val response = client!!.newCall(request).execute()
         val dakahtml = response.body?.string()
+        //println(dakahtml)
         if (dakahtml!!.contains("{\"result\":true}")) {
             val meg = Message.obtain()
             meg.what = 200
@@ -219,15 +221,12 @@ class ClockInActivity : AppCompatActivity() {
 
     private fun getDate(): String {
         val calendar: Calendar = Calendar.getInstance()
-        val y = calendar.get(Calendar.YEAR)
-        val m = calendar.get(Calendar.MONTH) + 1
-        val d = calendar.get(Calendar.DAY_OF_MONTH)
-        val currdate: String
-        if (m < 10)
-            currdate = y.toString() + "/0" + m.toString() + "/" + d.toString()
-        else
-            currdate = y.toString() + "/" + m.toString() + "/" + d.toString()
-        return currdate
+        val y = calendar.get(Calendar.YEAR).toString()
+        var m = (calendar.get(Calendar.MONTH) + 1).toString()
+        var d = calendar.get(Calendar.DAY_OF_MONTH).toString()
+        if (m.toInt() < 10) m = "0" + m
+        if (d.toInt() < 10) d = "0" + d
+        return y + "/" + m + "/" + d
     }
 
 
