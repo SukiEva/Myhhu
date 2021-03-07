@@ -13,7 +13,7 @@
             android:background="@android:color/white"
             android:theme="?attr/actionBarTheme"
             android:minHeight="?attr/actionBarSize" android:id="@+id/home_bar" app:titleTextColor="@color/toolbar"
-            app:subtitleTextAppearance="@style/Toolbar.SubTitleText"/>
+            app:subtitleTextAppearance="@style/Toolbar.SubTitleText" app:logo="@drawable/home_logo"/>
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent" tools:listitem="@layout/home_item_view" app:spanCount="2"

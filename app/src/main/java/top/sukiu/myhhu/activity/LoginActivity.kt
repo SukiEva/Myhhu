@@ -36,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
     private var homeUrl = "http://202.119.114.197/"
     var sp: SharedPreferences? = null
     private var cookie: String? = null
+    val log = AnkoLogger<LoginActivity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,7 +115,7 @@ class LoginActivity : AppCompatActivity() {
                         checkCodePicture?.post { checkCodePicture!!.setImageBitmap(captchaPic) }
                         return
                     } catch (e: Exception) {
-                        AnkoLogger<LoginActivity>().info { "Connect failed: " + e.stackTrace }
+                        log.debug { "Connect failed: " + e.stackTrace }
                         e.printStackTrace()
                         val meg = Message()
                         meg.what = 404
@@ -192,7 +193,7 @@ class LoginActivity : AppCompatActivity() {
                 loadingCaptchaPic()
             }
         } catch (e: Exception) {
-            AnkoLogger<LoginActivity>().info { "Login Failed: " + e.stackTrace }
+            log.debug { "Login Failed: " + e.stackTrace }
             e.printStackTrace()
             toast("Login failed. Please try again!")
             loginYzm.setText("")
@@ -246,7 +247,7 @@ class LoginActivity : AppCompatActivity() {
                 )
                 return rankinfos
             } catch (e: Exception) {
-                AnkoLogger<LoginActivity>().info { "Get Rank error: " + e }
+                log.debug { "Get Rank error: " + e.stackTrace }
                 e.printStackTrace()
                 cnt++
             }
@@ -283,7 +284,7 @@ class LoginActivity : AppCompatActivity() {
             }
             return gradesinfos
         } catch (e: Exception) {
-            AnkoLogger<LoginActivity>().info { "Get Grades error: " + e.stackTrace }
+            log.debug { "Get Grades error: " + e.stackTrace }
             e.printStackTrace()
             return null
         }

@@ -51,7 +51,6 @@ class ClockInSetActivity : AppCompatActivity() {
     private fun SaveButtonHandle() {
         val editor = sp!!.edit()
         editor.putString("account", account.text.toString())
-        //editor.putString("password", password.text.toString())
         editor.putString("wid", wid.text.toString())
         editor.putString("Name", Name.text.toString())
         editor.putString("SelfAccount", SelfAccount.text.toString())

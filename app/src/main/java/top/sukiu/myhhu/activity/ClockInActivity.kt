@@ -10,6 +10,8 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_clock_in.*
 import okhttp3.*
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import top.sukiu.myhhu.R
@@ -37,7 +39,7 @@ class ClockInActivity : AppCompatActivity() {
     private var client: OkHttpClient? = null
     var sp: SharedPreferences? = null
     private var cookie: String? = null
-
+    val log = AnkoLogger<ClockInActivity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +56,10 @@ class ClockInActivity : AppCompatActivity() {
         sp = this.getSharedPreferences("dakainfo", Context.MODE_PRIVATE)
         checkDakaInfo()
         dakaButton.setOnClickListener { dakaButtonHandle() }
-        setButton.setOnClickListener { startActivity<ClockInSetActivity>() }
+        setButton.setOnClickListener {
+            startActivity<ClockInSetActivity>()
+            log.info { "Start ClockInSetActivity" }
+        }
         at_home.setOnCheckedChangeListener { buttonView, isChecked -> atHomeButtonChange() }
         at_school.setOnCheckedChangeListener { buttonView, isChecked -> atSchoolButtonChange() }
     }

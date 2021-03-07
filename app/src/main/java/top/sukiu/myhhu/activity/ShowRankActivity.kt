@@ -2,21 +2,22 @@ package top.sukiu.myhhu.activity
 
 import android.app.Instrumentation
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_show_rank.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
+import org.jetbrains.anko.debug
 import top.sukiu.myhhu.R
 import top.sukiu.myhhu.bean.Rank
-import java.lang.Exception
 
 
 class ShowRankActivity : AppCompatActivity() {
+
+    val log = AnkoLogger<ShowRankActivity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +58,7 @@ class ShowRankActivity : AppCompatActivity() {
                     val inst = Instrumentation()
                     inst.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
                 } catch (e: Exception) {
-                    AnkoLogger<ShowRankActivity>().info { "Exception when onBack" + e.toString() }
+                    log.debug { "Exception when onBack" + e.stackTrace }
                     e.printStackTrace()
                 }
             }

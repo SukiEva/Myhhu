@@ -4,14 +4,14 @@ apply plugin: 'com.android.application'
 
     android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
       applicationId "top.sukiu.myhhu"
       minSdkVersion 24
       targetSdkVersion 30
-      versionCode 4
-      versionName "1.0.3"
+      versionCode 20210307
+      versionName "2.0"
 
       testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

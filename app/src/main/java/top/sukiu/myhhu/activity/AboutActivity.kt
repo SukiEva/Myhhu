@@ -6,11 +6,16 @@ import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_about.*
+import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.browse
+import org.jetbrains.anko.info
 import top.sukiu.myhhu.R
 
 
 class AboutActivity : AppCompatActivity() {
+
+    val log = AnkoLogger<AboutActivity>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         TransportStatusBar()
@@ -18,8 +23,14 @@ class AboutActivity : AppCompatActivity() {
         setSupportActionBar(about_bar)
         supportActionBar?.title = "About"
 
-        problem.setOnClickListener { browse("https://github.com/SukiEva/Myhhu/issues") }
-        sourcecode.setOnClickListener { browse("https://github.com/SukiEva/Myhhu") }
+        problem.setOnClickListener {
+            browse("https://github.com/SukiEva/Myhhu/issues")
+            log.info { "brose to" + "https://github.com/SukiEva/Myhhu/issues" }
+        }
+        sourcecode.setOnClickListener {
+            browse("https://github.com/SukiEva/Myhhu")
+            log.info { "brose to" + "https://github.com/SukiEva/Myhhu" }
+        }
     }
 
     @Suppress("DEPRECATION")

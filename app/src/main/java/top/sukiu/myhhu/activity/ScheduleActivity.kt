@@ -15,6 +15,9 @@ import top.sukiu.myhhu.R
 
 
 class ScheduleActivity : AppCompatActivity() {
+
+    val log = AnkoLogger<ScheduleActivity>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         TransportStatusBar()
@@ -37,7 +40,7 @@ class ScheduleActivity : AppCompatActivity() {
             finish()
         } catch (e: Exception) {
             toast("Wakeup not installed!")
-            AnkoLogger<ScheduleActivity>().info { "Schedule Error:" + e.stackTrace }
+            log.info { "Schedule Error: not installed" }
             e.printStackTrace()
         }
     }

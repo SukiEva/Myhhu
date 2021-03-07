@@ -16,10 +16,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_show_results.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.browse
-import org.jetbrains.anko.info
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.*
 import org.jsoup.Jsoup
 import top.sukiu.myhhu.R
 import top.sukiu.myhhu.adapter.HomeAdapter
@@ -28,6 +25,7 @@ import top.sukiu.myhhu.bean.HomeEntity
 
 class HomeActivity : AppCompatActivity(), OnItemClickListener {
 
+    val log = AnkoLogger<HomeActivity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +64,7 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
                         meg.obj = one
                         handler.sendMessage(meg)
                     } catch (e: Exception) {
-                        AnkoLogger<HomeActivity>().info { "Yiyan Error:" + e.stackTrace }
+                        log.debug { "Yiyan Error:" + e.stackTrace }
                         val meg = Message.obtain()
                         meg.what = 112
                         handler.sendMessage(meg)
@@ -92,21 +90,35 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
         val item = adapter.data[position] as HomeEntity
         if (!item.isHeader) {
             val webname = item.name
-            when {
-                webname.equals("奥蓝系统") -> {
-                    browse("http://smst.hhu.edu.cn/LOGIN.ASPX")
+            when (webname) {
+                "服务" -> {
+                    startActivity<ServiceActivity>(
+                        "weburl" to "http://www.hhu.edu.cn/xyfw/list.htm"
+                    )
                     return
                 }
-                webname.equals("教务系统") -> {
-                    browse("http://202.119.114.197/login")
+                "奥蓝系统" -> {
+                    startActivity<ServiceActivity>(
+                        "weburl" to "http://smst.hhu.edu.cn/Mobile/login.aspx"
+                    )
                     return
                 }
-                webname.equals("创训管理") -> {
-                    browse("http://sjjx.hhu.edu.cn/cxcy/Index.aspx")
+                "教务系统" -> {
+                    startActivity<ServiceActivity>(
+                        "weburl" to "http://202.119.114.197/login"
+                    )
                     return
                 }
-                webname.equals("信息门户") -> {
-                    browse("http://my.hhu.edu.cn/login.portal")
+                "创训管理" -> {
+                    startActivity<ServiceActivity>(
+                        "weburl" to "http://sjjx.hhu.edu.cn/cxcy/Index.aspx"
+                    )
+                    return
+                }
+                "信息门户" -> {
+                    startActivity<ServiceActivity>(
+                        "weburl" to "http://my.hhu.edu.cn/login.portal"
+                    )
                     return
                 }
             }
@@ -122,10 +134,10 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
             HomeEntity("服务", ServiceActivity::class.java, R.drawable.home_service),
             HomeEntity("打卡", ClockInActivity::class.java, R.drawable.home_daka),
             HomeEntity(headerTitle = "快捷入口"),
-            HomeEntity("奥蓝系统", HomeActivity::class.java, R.drawable.home_alxt),
-            HomeEntity("教务系统", HomeActivity::class.java, R.drawable.home_jwxt),
-            HomeEntity("创训管理", HomeActivity::class.java, R.drawable.home_cxgl),
-            HomeEntity("信息门户", HomeActivity::class.java, R.drawable.home_xxmh)
+            HomeEntity("奥蓝系统", ServiceActivity::class.java, R.drawable.home_alxt),
+            HomeEntity("教务系统", ServiceActivity::class.java, R.drawable.home_jwxt),
+            HomeEntity("创训管理", ServiceActivity::class.java, R.drawable.home_cxgl),
+            HomeEntity("信息门户", ServiceActivity::class.java, R.drawable.home_xxmh)
         )
 
     @Suppress("DEPRECATION")
