@@ -11,8 +11,8 @@
       "type": "SINGLE",
       "filters": [],
       "properties": [],
-      "versionCode": 20210307,
-      "versionName": "20210307",
+      "versionCode": 20210313,
+      "versionName": "20210313",
       "enabled": true,
       "outputFile": "app-release.apk"
     }
