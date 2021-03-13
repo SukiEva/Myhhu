@@ -28,12 +28,15 @@ class ClockInSetActivity : AppCompatActivity() {
         ShowMessage()
         SaveButton.setOnClickListener { SaveButtonHandle() }
         wid_teach.setOnClickListener { browse("https://blog.csdn.net/qq_43640009/article/details/107868713") }
+        CatchButton.setOnClickListener {
+            startActivity<CatchInfoActivity>()
+            finish()
+        }
     }
 
     private fun ShowMessage() {
         sp!!.let {
             account.setText(it.getString("account", "").toString())
-            //password.setText(it.getString("password", "").toString())
             wid.setText(it.getString("wid", "").toString())
             Name.setText(it.getString("Name", "").toString())
             SelfAccount.setText(it.getString("SelfAccount", "").toString())

@@ -36,7 +36,8 @@
     <string name="AtHome">在家</string>
     <string name="AtSchool">在校</string>
     <string name="PS">PS：住址分隔使用英文逗号</string>
-    <string name="clokin">请对照健康打卡填写\n</string>
+    <string name="clokin">自动填写→历史填报→浮动按钮\n</string>
     <string name="SaveButton">保存</string>
-    <string name="wid_teach">wid获取教程</string>
+    <string name="CatchButton">自动填写</string>
+    <string name="wid_teach">住址可能需手动填写\n在校可留空</string>
 </resources>

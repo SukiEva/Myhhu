@@ -108,11 +108,21 @@
                         android:layout_height="wrap_content" android:id="@+id/textView5" android:gravity="center"
                         android:textSize="12sp" android:textColor="#D50000"/>
             </LinearLayout>
-            <Button
-                    android:text="@string/SaveButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/SaveButton"
-                    style="@style/Widget.AppCompat.Button.Colored"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:gravity="center">
+                <Button
+                        android:text="@string/CatchButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/CatchButton"
+                        style="@style/Widget.AppCompat.Button.Colored"/>
+                <Button
+                        android:text="@string/SaveButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/SaveButton"
+                        style="@style/Widget.AppCompat.Button.Colored"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

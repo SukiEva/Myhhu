@@ -10,8 +10,8 @@ apply plugin: 'com.android.application'
       applicationId "top.sukiu.myhhu"
       minSdkVersion 24
       targetSdkVersion 30
-      versionCode 20210307
-      versionName "2.0"
+      versionCode 20210313
+      versionName "2.1"
 
       testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

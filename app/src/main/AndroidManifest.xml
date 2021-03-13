@@ -13,8 +13,12 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ServiceActivity"
-                  android:parentActivityName=".activity.HomeActivity">
+        <activity android:name=".activity.CatchInfoActivity"
+                  android:parentActivityName=".activity.ClockInSetActivity">
+        </activity>
+        <activity
+                android:name=".activity.ServiceActivity"
+                android:parentActivityName=".activity.HomeActivity">
         </activity>
         <activity
                 android:name=".activity.ClockInSetActivity"
