@@ -58,10 +58,18 @@ class ClockInActivity : AppCompatActivity() {
         dakaButton.setOnClickListener { dakaButtonHandle() }
         setButton.setOnClickListener {
             startActivity<ClockInSetActivity>()
+            //finish()
             log.info { "Start ClockInSetActivity" }
         }
         at_home.setOnCheckedChangeListener { buttonView, isChecked -> atHomeButtonChange() }
         at_school.setOnCheckedChangeListener { buttonView, isChecked -> atSchoolButtonChange() }
+        if (sp!!.getString("where", "").toString() == "home") {
+            at_home.isChecked = true
+            at_school.isChecked = false
+        } else {
+            at_home.isChecked = false
+            at_school.isChecked = true
+        }
     }
 
     private fun atHomeButtonChange() {
@@ -139,7 +147,9 @@ class ClockInActivity : AppCompatActivity() {
         val currdate = getDate()
         //println(currdate)
         val requestBody: RequestBody
+        val editor = sp!!.edit()
         if (at_home.isChecked) {
+            editor.putString("where", "home")
             requestBody = FormBody.Builder()
                 .add("DATETIME_CYCLE", currdate)
                 .add("XGH_336526", account)
@@ -170,6 +180,7 @@ class ClockInActivity : AppCompatActivity() {
                 .add("TEXT_752063", "")
                 .build()
         } else {
+            editor.putString("where", "school")
             requestBody = FormBody.Builder()
                 .add("DATETIME_CYCLE", currdate)
                 .add("XGH_336526", account)
@@ -200,6 +211,7 @@ class ClockInActivity : AppCompatActivity() {
                 .add("TEXT_752063", "")
                 .build()
         }
+        editor.commit()
         val request = Request.Builder()
             .removeHeader("User-Agent")
             .addHeader(

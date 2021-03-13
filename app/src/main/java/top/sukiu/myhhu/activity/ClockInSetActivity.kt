@@ -67,6 +67,7 @@ class ClockInSetActivity : AppCompatActivity() {
         editor.putString("Address", Address.text.toString())
         editor.commit()
         startActivity<ClockInActivity>()
+        finish()
     }
 
 
