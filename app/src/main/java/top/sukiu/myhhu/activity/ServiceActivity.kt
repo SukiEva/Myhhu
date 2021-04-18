@@ -1,33 +1,41 @@
 package top.sukiu.myhhu.activity
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.os.Bundle
-import android.view.*
+import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.webkit.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_service.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.browse
-import org.jetbrains.anko.info
 import top.sukiu.myhhu.R
+import top.sukiu.myhhu.util.LogUtil
+import top.sukiu.myhhu.util.browse
+import top.sukiu.myhhu.util.transportStatusBar
 
 
 class ServiceActivity : AppCompatActivity() {
 
     var webUrl: String? = null
-    val log = AnkoLogger<ServiceActivity>()
 
+    @SuppressLint("JavascriptInterface")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        TransportStatusBar()
+
         setContentView(R.layout.activity_service)
         setSupportActionBar(service_bar)
+        transportStatusBar(this, window, service_bar)
 
         webUrl = intent.getStringExtra("weburl")
-        log.info { "Load " + webUrl }
-        web.loadUrl(webUrl!!)
+        LogUtil.i("ServiceActivity", " -> " + webUrl)
+        try {
+            web.loadUrl(webUrl!!)
+        } catch (e: Exception) {
+            LogUtil.d("ServiceActivity", "LoadUrl Error")
+        }
         web.addJavascriptInterface(this, "android")
 
         web.webChromeClient = webChromeClient
@@ -45,7 +53,7 @@ class ServiceActivity : AppCompatActivity() {
                 return true
             }
         })
-        val webSettings: WebSettings = web.getSettings()
+        val webSettings: WebSettings = web.settings
         webSettings.javaScriptEnabled = true //允许使用js
         webSettings.cacheMode = WebSettings.LOAD_NO_CACHE
         webSettings.setSupportZoom(true)
@@ -89,18 +97,10 @@ class ServiceActivity : AppCompatActivity() {
         web.destroy()
     }
 
-    @Suppress("DEPRECATION")
-    private fun TransportStatusBar() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.setStatusBarColor(Color.TRANSPARENT)
-        window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-    }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when {
-            item.itemId == R.id.broser -> browse(webUrl!!)
+        when (item.itemId) {
+            R.id.broser -> browse(webUrl!!)
         }
         return super.onOptionsItemSelected(item)
     }

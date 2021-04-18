@@ -2,28 +2,24 @@ package top.sukiu.myhhu.activity
 
 import android.content.ComponentName
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_schedule.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
-import org.jetbrains.anko.toast
 import top.sukiu.myhhu.R
+import top.sukiu.myhhu.util.LogUtil
+import top.sukiu.myhhu.util.toast
+import top.sukiu.myhhu.util.transportStatusBar
 
 
 class ScheduleActivity : AppCompatActivity() {
 
-    val log = AnkoLogger<ScheduleActivity>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        TransportStatusBar()
         setContentView(R.layout.activity_schedule)
+
         setSupportActionBar(schedule_bar)
         supportActionBar?.title = "Schedule"
+        transportStatusBar(this, window, schedule_bar)
 
         judgeApk()
     }
@@ -40,16 +36,9 @@ class ScheduleActivity : AppCompatActivity() {
             finish()
         } catch (e: Exception) {
             toast("Wakeup not installed!")
-            log.info { "Schedule Error: not installed" }
+            LogUtil.d("ScheduleActivity", "Schedule Error: not installed")
             e.printStackTrace()
         }
-    }
-    @Suppress("DEPRECATION")
-    private fun TransportStatusBar() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.setStatusBarColor(Color.TRANSPARENT)
-        window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
 
 }

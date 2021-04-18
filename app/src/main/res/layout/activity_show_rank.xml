@@ -1,190 +1,302 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              tools:context=".activity.ShowRankActivity" android:orientation="vertical" android:background="@color/bg"
-              android:gravity="center"
-              android:fitsSystemWindows="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".activity.ShowRankActivity">
 
     <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:theme="?attr/actionBarTheme"
-            android:minHeight="?attr/actionBarSize" android:id="@+id/rank_bar" android:gravity="center"
-            android:background="@android:color/white" app:navigationIcon="@drawable/toolbar_back"
-            app:titleTextColor="@color/toolbar"/>
+        android:id="@+id/rank_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/toolbar_back"
+        app:titleTextColor="@color/toolbar" />
+
     <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/rank_header" android:id="@+id/imageView9"/>
+        android:id="@+id/imageView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/rank_header" />
+
     <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:showDividers="middle|beginning|end"
-            android:divider="@drawable/rank_divider">
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:divider="@drawable/rank_divider"
+        android:orientation="vertical"
+        android:showDividers="middle|beginning|end">
+
         <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
-                    android:text="@string/major"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView8" android:layout_weight="1"
-                    android:drawableLeft="@drawable/rank_major" android:gravity="left|center_vertical"
-                    android:textSize="18sp" android:fontFamily="sans-serif-black"/>
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/rank_major"
+                android:fontFamily="sans-serif-black"
+                android:gravity="left|center_vertical"
+                android:text="@string/major"
+                android:textSize="18sp" />
+
             <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent" android:id="@+id/major" android:layout_weight="1"
-                    tools:text="计算机科学与技术" android:gravity="center" android:textColor="#090909"/>
+                android:id="@+id/major"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#090909"
+                tools:text="计算机科学与技术" />
         </LinearLayout>
+
         <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
-                    android:text="@string/majornum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView9" android:layout_weight="1"
-                    android:drawableLeft="@drawable/rank_nums" android:gravity="left|center_vertical"
-                    android:textSize="18sp" android:fontFamily="sans-serif-black"/>
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/rank_nums"
+                android:fontFamily="sans-serif-black"
+                android:gravity="left|center_vertical"
+                android:text="@string/majornum"
+                android:textSize="18sp" />
+
             <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent" android:id="@+id/majornum" android:layout_weight="1"
-                    tools:text="200" android:layout_gravity="center" android:gravity="center"
-                    android:textColor="#E53935"/>
+                android:id="@+id/majornum"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#E53935"
+                tools:text="200" />
         </LinearLayout>
+
         <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
-                    android:text="@string/rankgrade"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView24" android:layout_weight="1"
-                    android:drawableLeft="@drawable/rank_grades" android:gravity="left|center_vertical"
-                    android:textSize="18sp"
-                    android:fontFamily="sans-serif-black"/>
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/rank_grades"
+                android:fontFamily="sans-serif-black"
+                android:gravity="left|center_vertical"
+                android:text="@string/rankgrade"
+                android:textSize="18sp" />
+
             <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent" android:layout_weight="1">
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
                 <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:layout_weight="1">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
                     <TextView
-                            android:text="@string/ava"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:layout_weight="1"
-                            android:gravity="center" android:textSize="16sp"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/ava"
+                        android:textSize="16sp" />
+
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/avagrade"
-                            android:layout_weight="1" tools:text="90" android:textColor="#48C140"
-                            android:gravity="center"/>
+                        android:id="@+id/avagrade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#48C140"
+                        tools:text="90" />
                 </LinearLayout>
+
                 <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:layout_weight="1">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
                     <TextView
-                            android:text="@string/excellent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:layout_weight="1"
-                            android:gravity="center" android:textSize="16sp"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/excellent"
+                        android:textSize="16sp" />
+
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="23dp" android:id="@+id/grade"
-                            android:layout_weight="1" tools:text="90" android:textColor="#48C140"
-                            android:gravity="center"/>
+                        android:id="@+id/grade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#48C140"
+                        tools:text="90" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
-                    android:text="@string/rankgpa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView21" android:layout_weight="1"
-                    android:drawableLeft="@drawable/rank_gpa" android:gravity="left|center_vertical"
-                    android:textSize="18sp" android:fontFamily="sans-serif-black"/>
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/rank_gpa"
+                android:fontFamily="sans-serif-black"
+                android:gravity="left|center_vertical"
+                android:text="@string/rankgpa"
+                android:textSize="18sp" />
+
             <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent" android:layout_weight="1">
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
                 <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:layout_weight="1">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:layout_weight="1"
-                            android:gravity="center" android:text="@string/ava" android:textSize="16sp"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/ava"
+                        android:textSize="16sp" />
+
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/avagpa"
-                            android:layout_weight="1" tools:text="5.0" android:textColor="#48C140"
-                            android:gravity="center"/>
+                        android:id="@+id/avagpa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#48C140"
+                        tools:text="5.0" />
                 </LinearLayout>
+
                 <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:layout_weight="1">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:layout_weight="1"
-                            android:gravity="center" android:text="@string/excellent" android:textSize="16sp"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/excellent"
+                        android:textSize="16sp" />
+
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="23dp" android:id="@+id/gpa"
-                            android:layout_weight="1" tools:text="5.0" android:textColor="#48C140"
-                            android:gravity="center"/>
+                        android:id="@+id/gpa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#48C140"
+                        tools:text="5.0" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
-                    android:text="@string/rankrank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView22" android:layout_weight="1"
-                    android:drawableLeft="@drawable/rank_rank" android:gravity="left|center_vertical"
-                    android:textSize="18sp" android:fontFamily="sans-serif-black"/>
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/rank_rank"
+                android:fontFamily="sans-serif-black"
+                android:gravity="left|center_vertical"
+                android:text="@string/rankrank"
+                android:textSize="18sp" />
+
             <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent" android:layout_weight="1">
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
                 <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:layout_weight="1">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:layout_weight="1"
-                            android:gravity="center" android:text="@string/ava" android:textSize="16sp"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/ava"
+                        android:textSize="16sp" />
+
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="23dp" android:id="@+id/avarank"
-                            android:layout_weight="1" tools:text="200" android:textColor="#48C140"
-                            android:gravity="center"/>
+                        android:id="@+id/avarank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#48C140"
+                        tools:text="200" />
                 </LinearLayout>
+
                 <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:layout_weight="1">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:layout_weight="1"
-                            android:gravity="center" android:text="@string/excellent" android:textSize="16sp"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/excellent"
+                        android:textSize="16sp" />
+
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" android:id="@+id/rank"
-                            android:layout_weight="1" tools:text="200" android:textColor="#48C140"
-                            android:gravity="center"/>
+                        android:id="@+id/rank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="#48C140"
+                        tools:text="200" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

@@ -1,102 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-                                              xmlns:app="http://schemas.android.com/apk/res-auto"
-                                              xmlns:tools="http://schemas.android.com/tools"
-                                              android:layout_width="match_parent"
-                                              android:layout_height="match_parent"
-                                              android:gravity="center_horizontal"
-                                              android:orientation="vertical"
-                                              android:fitsSystemWindows="true"
-                                              tools:context=".activity.LoginActivity" android:background="@color/bg">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".activity.LoginActivity">
+
     <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:theme="?attr/actionBarTheme"
-            android:minHeight="?attr/actionBarSize" android:id="@+id/login_bar"
-            android:background="@android:color/white" app:navigationIcon="@drawable/toolbar_back"
-            app:titleTextColor="@color/toolbar"/>
+        android:id="@+id/login_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@android:color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/toolbar_back"
+        app:titleTextColor="@color/toolbar" />
 
     <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:gravity="center_horizontal|center_vertical">
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/imageView2"
-                tools:srcCompat="@drawable/login_header" app:srcCompat="@drawable/login_header" android:minHeight="200dp"
-                android:minWidth="200dp"/>
-    </LinearLayout>
-    <TableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tableLayout"
-    >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical">
 
-        <TableRow android:layout_width="wrap_content" android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="200dp"
+            android:minHeight="200dp"
+            app:srcCompat="@drawable/login_header"
+            tools:srcCompat="@drawable/login_header" />
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
             <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:gravity="center">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:ems="10"
-                        android:id="@+id/loginNum" android:layout_weight="1"
-                        android:hint="@string/loginNum" android:drawableLeft="@drawable/login_user"/>
+                    android:id="@+id/loginNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/login_user"
+                    android:ems="10"
+                    android:hint="@string/loginNum"
+                    android:inputType="number" />
             </LinearLayout>
         </TableRow>
-        <TableRow android:layout_width="wrap_content" android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
             <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
                 <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:ems="10"
-                        android:id="@+id/loginPassword" android:layout_weight="1"
-                        android:hint="@string/loginPassword" android:drawableLeft="@drawable/login_password"/>
+                    android:id="@+id/loginPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/login_password"
+                    android:ems="10"
+                    android:hint="@string/loginPassword"
+                    android:inputType="textPassword" />
             </LinearLayout>
         </TableRow>
-        <TableRow android:layout_width="wrap_content" android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
             <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:id="@+id/checkCodePicture"
-                        android:layout_weight="1"/>
+                    android:id="@+id/checkCodePicture"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
                 <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:id="@+id/loginYzm" android:layout_weight="1" android:autofillHints=""
-                        android:hint="@string/loginYzm" android:inputType="text"/>
+                    android:id="@+id/loginYzm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:hint="@string/loginYzm"
+                    android:inputType="text" />
+
                 <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/refreshButton" android:background="#00FFFFFF"
-                        app:srcCompat="@drawable/login_refresh"/>
+                    android:id="@+id/refreshButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#00FFFFFF"
+                    app:srcCompat="@drawable/login_refresh" />
             </LinearLayout>
         </TableRow>
-        <TableRow android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0">
+
             <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:gravity="center">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" android:id="@+id/rememberInfo" android:layout_weight="1"
-                        android:text="@string/remember"/>
+                    android:id="@+id/rememberInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/remember" />
+
                 <Button
-                        android:text="@string/askGrades"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content" android:id="@+id/askGrades"
-                        style="@style/Widget.AppCompat.Button.Colored" android:layout_marginRight="80dp"/>
+                    android:id="@+id/askGrades"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="80dp"
+                    android:text="@string/askGrades" />
             </LinearLayout>
         </TableRow>
     </TableLayout>

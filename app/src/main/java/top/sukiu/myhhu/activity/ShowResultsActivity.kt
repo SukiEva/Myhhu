@@ -1,14 +1,10 @@
 package top.sukiu.myhhu.activity
 
-import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.entity.node.BaseNode
 import kotlinx.android.synthetic.main.activity_show_results.*
-import org.jetbrains.anko.startActivity
 import top.sukiu.myhhu.R
 import top.sukiu.myhhu.adapter.NodeTreeAdapter
 import top.sukiu.myhhu.bean.Course
@@ -17,6 +13,8 @@ import top.sukiu.myhhu.bean.Rank
 import top.sukiu.myhhu.node.FirstNode
 import top.sukiu.myhhu.node.SecondNode
 import top.sukiu.myhhu.node.ThirdNode
+import top.sukiu.myhhu.util.start
+import top.sukiu.myhhu.util.transportStatusBar
 import java.util.*
 
 
@@ -28,10 +26,11 @@ class ShowResultsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        TransportStatusBar()
+
         setContentView(R.layout.activity_show_results)
         setSupportActionBar(results_bar)
         supportActionBar?.title = "Grades"
+        transportStatusBar(this, window, results_bar)
 
         val nodeAdapter = NodeTreeAdapter()
 
@@ -41,8 +40,9 @@ class ShowResultsActivity : AppCompatActivity() {
         nodeAdapter.setList(getEntity())
         val info = intent.getSerializableExtra("rank") as Rank
         to_rank.setOnClickListener {
-            startActivity<ShowRankActivity>(
-                "rank" to info
+            start(
+                ShowRankActivity::class.java,
+                dataSerializable = mapOf("rank" to info)
             )
         }
     }
@@ -92,7 +92,8 @@ class ShowResultsActivity : AppCompatActivity() {
                 thirdNodeList.add(AttributeName)
                 thirdNodeList.add(Credit)
                 thirdNodeList.add(PointScore)
-                val seNode = SecondNode(thirdNodeList, course.courseName, course.courseScore.toString())
+                val seNode =
+                    SecondNode(thirdNodeList, course.courseName, course.courseScore.toString())
                 secondNodeList.add(seNode)
             }
             val entity = FirstNode(secondNodeList, key) // 学期
@@ -105,12 +106,5 @@ class ShowResultsActivity : AppCompatActivity() {
         return list
     }
 
-    @Suppress("DEPRECATION")
-    private fun TransportStatusBar() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.TRANSPARENT)
-        window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-    }
 
 }

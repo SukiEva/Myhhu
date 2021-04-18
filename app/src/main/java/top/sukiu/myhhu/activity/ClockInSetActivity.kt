@@ -1,81 +1,71 @@
 package top.sukiu.myhhu.activity
 
-import android.content.Context
-import android.content.SharedPreferences
-import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_clock_in_set.*
-import org.jetbrains.anko.browse
-import org.jetbrains.anko.startActivity
+import kotlinx.coroutines.launch
 import top.sukiu.myhhu.R
+import top.sukiu.myhhu.util.UserData
+import top.sukiu.myhhu.util.addData
+import top.sukiu.myhhu.util.start
+import top.sukiu.myhhu.util.transportStatusBar
 
 class ClockInSetActivity : AppCompatActivity() {
 
-    var sp: SharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        TransportStatusBar()
+
         setContentView(R.layout.activity_clock_in_set)
         setSupportActionBar(clock_in_set_bar)
         supportActionBar?.title = "Setting"
+        transportStatusBar(this, window, clock_in_set_bar)
 
-        sp = this.getSharedPreferences("dakainfo", Context.MODE_PRIVATE)
 
         ShowMessage()
-        SaveButton.setOnClickListener { SaveButtonHandle() }
-        wid_teach.setOnClickListener { browse("https://blog.csdn.net/qq_43640009/article/details/107868713") }
+        SaveButton.setOnClickListener { saveButtonHandle() }
         CatchButton.setOnClickListener {
-            startActivity<CatchInfoActivity>()
+            start(CatchInfoActivity::class.java)
             finish()
         }
     }
 
     private fun ShowMessage() {
-        sp!!.let {
-            account.setText(it.getString("account", "").toString())
-            wid.setText(it.getString("wid", "").toString())
-            Name.setText(it.getString("Name", "").toString())
-            SelfAccount.setText(it.getString("SelfAccount", "").toString())
-            Institute.setText(it.getString("Institute", "").toString())
-            Grade.setText(it.getString("Grade", "").toString())
-            Major.setText(it.getString("Major", "").toString())
-            Classes.setText(it.getString("Classes", "").toString())
-            Building.setText(it.getString("Building", "").toString())
-            Room.setText(it.getString("Room", "").toString())
-            PhoneNum.setText(it.getString("PhoneNum", "").toString())
-            Address.setText(it.getString("Address", "").toString())
+        lifecycleScope.launch {
+            UserData.setData()
+            account.setText(UserData.account)
+            wid.setText(UserData.wid)
+            Name.setText(UserData.Name)
+            SelfAccount.setText(UserData.SelfAccount)
+            Institute.setText(UserData.Institute)
+            Grade.setText(UserData.Grade)
+            Major.setText(UserData.Major)
+            Classes.setText(UserData.Classes)
+            Building.setText(UserData.Building)
+            Room.setText(UserData.Room)
+            PhoneNum.setText(UserData.PhoneNum)
+            Address.setText(UserData.Address)
         }
     }
 
-    private fun SaveButtonHandle() {
-        val editor = sp!!.edit()
-        editor.putString("account", account.text.toString())
-        editor.putString("wid", wid.text.toString())
-        editor.putString("Name", Name.text.toString())
-        editor.putString("SelfAccount", SelfAccount.text.toString())
-        editor.putString("Institute", Institute.text.toString())
-        editor.putString("Grade", Grade.text.toString())
-        editor.putString("Major", Major.text.toString())
-        editor.putString("Classes", Classes.text.toString())
-        editor.putString("Building", Building.text.toString())
-        editor.putString("Room", Room.text.toString())
-        editor.putString("PhoneNum", PhoneNum.text.toString())
-        editor.putString("Address", Address.text.toString())
-        editor.commit()
-        startActivity<ClockInActivity>()
+
+    private fun saveButtonHandle() {
+        lifecycleScope.launch {
+            addData("account", account.text.toString())
+            addData("wid", wid.text.toString())
+            addData("Name", Name.text.toString())
+            addData("SelfAccount", SelfAccount.text.toString())
+            addData("Institute", Institute.text.toString())
+            addData("Grade", Grade.text.toString())
+            addData("Major", Major.text.toString())
+            addData("Classes", Classes.text.toString())
+            addData("Building", Building.text.toString())
+            addData("Room", Room.text.toString())
+            addData("PhoneNum", PhoneNum.text.toString())
+            addData("Address", Address.text.toString())
+        }
         finish()
     }
 
-
-    @Suppress("DEPRECATION")
-    private fun TransportStatusBar() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.setStatusBarColor(Color.TRANSPARENT)
-        window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-    }
 }

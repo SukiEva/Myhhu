@@ -1,56 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="top.sukiu.myhhu">
+    package="top.sukiu.myhhu">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-            android:allowBackup="true"
-            android:icon="@drawable/launch"
-            android:label="@string/app_name"
-            android:roundIcon="@drawable/launch_round"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme"
-            android:usesCleartextTraffic="true">
-        <activity android:name=".activity.CatchInfoActivity"
-                  android:parentActivityName=".activity.ClockInSetActivity">
-        </activity>
+        android:name=".util.MyApplication"
+        android:icon="@drawable/launch"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/launch_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
         <activity
-                android:name=".activity.ServiceActivity"
-                android:parentActivityName=".activity.HomeActivity">
-        </activity>
+            android:name=".activity.CatchInfoActivity"
+            android:parentActivityName=".activity.ClockInSetActivity" />
         <activity
-                android:name=".activity.ClockInSetActivity"
-                android:parentActivityName=".activity.ClockInActivity">
-        </activity>
+            android:name=".activity.ServiceActivity"
+            android:parentActivityName=".activity.HomeActivity" />
         <activity
-                android:name=".activity.ClockInActivity"
-                android:parentActivityName=".activity.HomeActivity">
-        </activity>
+            android:name=".activity.ClockInSetActivity"
+            android:parentActivityName=".activity.ClockInActivity" />
         <activity
-                android:name=".activity.AboutActivity"
-                android:parentActivityName=".activity.HomeActivity">
-        </activity>
+            android:name=".activity.ClockInActivity"
+            android:parentActivityName=".activity.HomeActivity" />
         <activity
-                android:name=".activity.ScheduleActivity"
-                android:parentActivityName=".activity.HomeActivity">
-        </activity>
-        <activity android:name=".activity.ShowRankActivity">
-        </activity>
+            android:name=".activity.AboutActivity"
+            android:parentActivityName=".activity.HomeActivity" />
         <activity
-                android:name=".activity.ShowResultsActivity"
-                android:parentActivityName=".activity.HomeActivity">
-        </activity>
+            android:name=".activity.ScheduleActivity"
+            android:parentActivityName=".activity.HomeActivity" />
+        <activity android:name=".activity.ShowRankActivity" />
         <activity
-                android:name=".activity.LoginActivity"
-                android:parentActivityName=".activity.HomeActivity">
-        </activity>
+            android:name=".activity.ShowResultsActivity"
+            android:parentActivityName=".activity.HomeActivity" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:parentActivityName=".activity.HomeActivity" />
         <activity android:name=".activity.HomeActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

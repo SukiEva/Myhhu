@@ -1,78 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-                                              xmlns:app="http://schemas.android.com/apk/res-auto"
-                                              xmlns:tools="http://schemas.android.com/tools"
-                                              android:layout_width="match_parent"
-                                              android:layout_height="match_parent"
-                                              android:gravity="center_horizontal"
-                                              android:orientation="vertical"
-                                              tools:context=".activity.ScheduleActivity" android:background="@color/bg"
-                                              android:fitsSystemWindows="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".activity.ScheduleActivity">
 
     <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@android:color/white"
-            android:theme="?attr/actionBarTheme"
-            android:minHeight="?attr/actionBarSize" android:id="@+id/schedule_bar"
-            app:navigationIcon="@drawable/toolbar_back" app:titleTextColor="@color/toolbar"/>
+        android:id="@+id/schedule_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@android:color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/toolbar_back"
+        app:titleTextColor="@color/toolbar" />
+
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@mipmap/wakeup" android:id="@+id/imageView"/>
-    <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center_horizontal"
-            android:text="Wakeup课程表"
-            android:textSize="14sp"
-            android:textStyle="bold"/>
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/wakeup" />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:lineSpacingExtra="8dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:text="「 由苏大学长开发的开源app，功能强大、UI美观，可前往应用商店下载或点击下方链接」"
-            android:textSize="12sp"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:text="Wakeup课程表"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:lineSpacingExtra="8dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:text="安装完成后再次进入本页面可直接打开课程表"
-            android:textSize="12sp" android:textColor="#E53935" android:gravity="center"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:lineSpacingExtra="8dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:text="「 由苏大学长开发的开源app，功能强大、UI美观，可前往应用商店下载或点击下方链接」"
+        android:textSize="12sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center_horizontal"
-            android:text="下载地址"
-            android:textSize="14sp"
-            android:textStyle="bold"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:lineSpacingExtra="8dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:text="安装完成后再次进入本页面可直接打开课程表"
+        android:textColor="#E53935"
+        android:textSize="12sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_horizontal"
-            android:text="酷安： https://www.coolapk.com/apk/com.suda.yzune.wakeupschedule"
-            android:textIsSelectable="true"
-            android:textSize="12sp" android:autoLink="web"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="下载地址"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_horizontal"
-            android:text="Github：https://github.com/YZune/WakeupSchedule_Kotlin"
-            android:textIsSelectable="true"
-            android:textSize="12sp" android:autoLink="web"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:autoLink="web"
+        android:gravity="center_horizontal"
+        android:text="酷安： https://www.coolapk.com/apk/com.suda.yzune.wakeupschedule"
+        android:textIsSelectable="true"
+        android:textSize="12sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:autoLink="web"
+        android:gravity="center_horizontal"
+        android:text="Github：https://github.com/YZune/WakeupSchedule_Kotlin"
+        android:textIsSelectable="true"
+        android:textSize="12sp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
