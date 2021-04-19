@@ -8,11 +8,11 @@ App for hhuers based on Kotlin
 2. 拉取Wakeup查询课表
 3. 官网校园服务
 4. 一键打卡
-5. 常用网站入口
+5. 定时打卡 (因ROM不同，不保证成功)
+6. 常用网站入口
 
 ### 计划功能
-
-1. 定时打卡
+1. JetPack Compose / Flutter 重构 UI
 2. 一键评教
 3. 一键选课
 
