@@ -29,7 +29,6 @@ import java.util.*
 
 class ClockInActivity : AppCompatActivity() {
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,14 +48,20 @@ class ClockInActivity : AppCompatActivity() {
         at_school.setOnCheckedChangeListener { _, _ -> atSchoolButtonChange() }
         auto.setOnCheckedChangeListener { _, _ -> autoButtonChange() }
         helpB.setOnClickListener { alert(this, message = "高版本安卓不保证成功，请保证后台运行") }
-        if (UserData.Where == "home") {
+        notify.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) setSP("notify", "true")
+            else setSP("notify", "false")
+        }
+        if (sp("notify") == "true")
+            notify.isChecked = true
+        if (sp("Where") == "home") {
             at_home.isChecked = true
             at_school.isChecked = false
         } else {
             at_home.isChecked = false
             at_school.isChecked = true
         }
-        if (UserData.auto == "true") {
+        if (sp("auto") == "true") {
             alarm(UserData.hour, UserData.minute)
             auto.isChecked = true
         } else auto.isChecked = false
@@ -93,15 +98,17 @@ class ClockInActivity : AppCompatActivity() {
     private fun autoButtonChange() {
         when (auto.isChecked) {
             true -> {
+                if (sp("auto") == "true") return
                 val calendar = Calendar.getInstance()
                 TimePickerDialog(
                     this,
                     { _, hourOfDay, minute ->
                         run {
+                            setSP("auto", "true")
                             lifecycleScope.launch {
-                                addData("auto", "true")
                                 addData("hour", hourOfDay.toString())
                                 addData("minute", minute.toString())
+                                LogUtil.d("ClockInActivity", "Store alarm")
                             }
                             alarm(hourOfDay, minute)
                             toast("定时设置成功")
@@ -113,7 +120,7 @@ class ClockInActivity : AppCompatActivity() {
                 ).show()
             }
             false -> {
-                lifecycleScope.launch { addData("auto", "false") }
+                setSP("auto", "false")
                 val intent = Intent(this, ClockService::class.java)
                 stopService(intent)
             }
@@ -140,15 +147,11 @@ class ClockInActivity : AppCompatActivity() {
             toast("请填写地址信息")
             return
         }
-        lifecycleScope.launch {
-            if (at_home.isChecked) {
-                addData("Where", "home")
-                UserData.Where = "home"
-            } else {
-                addData("Where", "school")
-                UserData.Where = "school"
-            }
-        }
+        if (at_home.isChecked)
+            setSP("Where", "home")
+        else
+            setSP("Where", "school")
+
         clockIn(handler)
     }
 

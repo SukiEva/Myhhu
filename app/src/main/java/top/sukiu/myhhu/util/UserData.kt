@@ -22,9 +22,11 @@ object UserData {
     var Address: String = ""    //住址
     var Where: String = ""  //在哪
 
-    var auto: String = ""  //自动
+    //var auto: String = ""  //自动
     var hour: Int = 12  //自动
     var minute: Int = 10  //自动
+
+    //var noti = ""
 
     private var cookie: String? = null
     private val client = OkHttpClient().newBuilder()
@@ -46,7 +48,8 @@ object UserData {
 
 
     suspend fun setData() {
-        auto = readData("auto")
+        //auto = readData("auto")
+        //noti = readData("notify")
         val mh = readData("hour")
         val mm = readData("minute")
         if (mh != "") hour = mh.toInt()

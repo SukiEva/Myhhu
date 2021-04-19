@@ -3,7 +3,9 @@ package top.sukiu.myhhu.util
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
@@ -79,5 +81,19 @@ fun notify(title: String? = "", body: String? = "") {
     mBuilder.setSmallIcon(R.drawable.launch_round)
     //mBuilder.setProgress(0,0,false)
     notificationHelper.notify(1)
+}
+
+val sp: SharedPreferences = MyApplication.context.getSharedPreferences("Clock", MODE_PRIVATE)
+fun setSP(key: String, value: Any) {
+    val editor = sp.edit()
+    when (value) {
+        is String -> editor.putString(key, value)
+        is Boolean -> editor.putBoolean(key, value)
+    }
+    editor.apply()
+}
+
+fun sp(key: String): String? {
+    return sp.getString(key, "")
 }
 
