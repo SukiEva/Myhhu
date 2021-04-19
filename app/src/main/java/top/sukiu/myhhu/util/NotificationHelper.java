@@ -13,8 +13,8 @@ import androidx.annotation.RequiresApi;
 import top.sukiu.myhhu.R;
 
 public class NotificationHelper extends ContextWrapper {
-    public static final String PRIMARY_CHANNEL_ID = "default";
-    public static final String SECONDARY_CHANNEL_ID = "second";
+    public static final String PRIMARY_CHANNEL_ID = "打卡通知";
+    public static final String SECONDARY_CHANNEL_ID = "自动打卡通知";
     private NotificationManager manager;
     private Notification.Builder mBuilder;
 
@@ -64,12 +64,13 @@ public class NotificationHelper extends ContextWrapper {
     }
 
     private int getSmallIcon() {
-        return android.R.drawable.stat_sys_download;
+        return R.drawable.launch_round;
     }
 
     private NotificationManager getManager() {
         if (manager == null) {
             manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            manager.cancel(1);
         }
         return manager;
     }

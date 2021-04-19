@@ -73,7 +73,26 @@
                     android:gravity="center"
                     android:text="@string/auto"
                     android:textColor="@color/color_light_blue"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
+
+                <ImageButton
+                    android:id="@+id/helpB"
+                    style="@android:style/Widget.Material.ImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/clockin_help" />
+
+                <Switch
+                    android:id="@+id/notify"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="@string/notify"
+                    android:textColor="@color/color_light_blue"
+                    android:visibility="visible" />
 
                 <Button
                     android:id="@+id/dakaButton"

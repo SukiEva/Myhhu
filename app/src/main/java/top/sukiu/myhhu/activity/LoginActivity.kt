@@ -88,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
                 val grades = Grades(courses)
                 start(
                     ShowResultsActivity::class.java,
-                    dataSerializable = mapOf("grades" to grades, "rank" to rank)
+                    mapOf("grades" to grades, "rank" to rank)
                 )
                 finish()
                 return

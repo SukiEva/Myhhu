@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <service
+            android:name=".service.ClockService"
+            android:enabled="true"
+            android:exported="true"></service>
 
         <activity
             android:name=".activity.CatchInfoActivity"

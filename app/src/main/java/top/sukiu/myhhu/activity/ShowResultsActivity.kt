@@ -42,7 +42,7 @@ class ShowResultsActivity : AppCompatActivity() {
         to_rank.setOnClickListener {
             start(
                 ShowRankActivity::class.java,
-                dataSerializable = mapOf("rank" to info)
+                mapOf("rank" to info)
             )
         }
     }

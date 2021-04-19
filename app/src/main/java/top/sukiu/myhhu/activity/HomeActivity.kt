@@ -74,7 +74,7 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
             }
             url?.let {
                 LogUtil.i("HomeActivity -> ", url)
-                start(ServiceActivity::class.java, dataString = mapOf("weburl" to url))
+                start(ServiceActivity::class.java, mapOf("weburl" to url))
                 return
             }
             startActivity(Intent(this@HomeActivity, item.activity))

@@ -6,8 +6,11 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.view.Window
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import top.sukiu.myhhu.R
 import java.io.Serializable
 
 fun transportStatusBar(
@@ -30,6 +33,7 @@ fun transportStatusBar(
 fun browse(url: String) {
     val intent = Intent(Intent.ACTION_VIEW)
     intent.data = Uri.parse(url)
+    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
     MyApplication.context.startActivity(intent)
 }
 
@@ -44,26 +48,36 @@ fun alert(context: Context, title: String = "可恶___*( ￣皿￣)/#____", mess
 }
 
 fun toast(message: String, time: Int = Toast.LENGTH_SHORT) {
-    Toast.makeText(MyApplication.context, message, time).show()
+    val toast = Toast.makeText(MyApplication.context, message, time)
+    toast.show()
 }
 
 fun start(
     activity: Class<*>,
-    dataSerializable: Map<String, Serializable>? = null,
-    dataString: Map<String, String>? = null
+    data: Map<String, Any>? = null
 ) {
     val context = MyApplication.context
     val intent = Intent(context, activity)
-    dataSerializable?.let {
-        for ((key, value) in it)
-            intent.putExtra(key, value)
-    }
-    dataString?.let {
-        for ((key, value) in it)
-            intent.putExtra(key, value)
+    data?.let {
+        for ((key, value) in it) {
+            when (value) {
+                is String -> intent.putExtra(key, value)
+                is Serializable -> intent.putExtra(key, value)
+                is Int -> intent.putExtra(key, value)
+            }
+        }
     }
     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
     context.startActivity(intent)
 }
 
+@RequiresApi(api = Build.VERSION_CODES.O)
+fun notify(title: String? = "", body: String? = "") {
+    val notificationHelper = NotificationHelper(MyApplication.context)
+    val mBuilder = notificationHelper.getNotificationPrivate(title, body)
+    mBuilder.setOnlyAlertOnce(true)
+    mBuilder.setSmallIcon(R.drawable.launch_round)
+    //mBuilder.setProgress(0,0,false)
+    notificationHelper.notify(1)
+}
 
