@@ -1,15 +1,17 @@
 package top.sukiu.myhhu.activity
 
 import android.app.TimePickerDialog
-import android.content.Intent
 import android.os.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import kotlinx.android.synthetic.main.activity_clock_in.*
-import kotlinx.coroutines.launch
 import top.sukiu.myhhu.R
-import top.sukiu.myhhu.service.ClockService
+import top.sukiu.myhhu.service.ClockWorker
 import top.sukiu.myhhu.util.*
 import top.sukiu.myhhu.util.UserData.Address
 import top.sukiu.myhhu.util.UserData.Building
@@ -25,6 +27,7 @@ import top.sukiu.myhhu.util.UserData.account
 import top.sukiu.myhhu.util.UserData.clockIn
 import top.sukiu.myhhu.util.UserData.wid
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 
 class ClockInActivity : AppCompatActivity() {
@@ -61,10 +64,7 @@ class ClockInActivity : AppCompatActivity() {
             at_home.isChecked = false
             at_school.isChecked = true
         }
-        if (sp("auto") == "true") {
-            alarm(UserData.hour, UserData.minute)
-            auto.isChecked = true
-        } else auto.isChecked = false
+        auto.isChecked = sp("auto") == "true"
     }
 
 
@@ -102,16 +102,16 @@ class ClockInActivity : AppCompatActivity() {
                 val calendar = Calendar.getInstance()
                 TimePickerDialog(
                     this,
-                    { _, hourOfDay, minute ->
+                    { _, hourOfDay, _ ->
                         run {
                             setSP("auto", "true")
-                            lifecycleScope.launch {
-                                addData("hour", hourOfDay.toString())
-                                addData("minute", minute.toString())
-                                LogUtil.d("ClockInActivity", "Store alarm")
-                            }
-                            alarm(hourOfDay, minute)
+                            setSP("targetHour", hourOfDay)
+                            alarm(hourOfDay)
                             toast("定时设置成功")
+                            LogUtil.i(
+                                "ClockInActivity",
+                                "Set Time $hourOfDay Let's Start"
+                            )
                         }
                     },
                     calendar.get(Calendar.HOUR_OF_DAY),
@@ -121,20 +121,24 @@ class ClockInActivity : AppCompatActivity() {
             }
             false -> {
                 setSP("auto", "false")
-                val intent = Intent(this, ClockService::class.java)
-                stopService(intent)
+                WorkManager.getInstance(this).cancelUniqueWork("Clock")
+                toast("定时设置已取消")
+                LogUtil.i(
+                    "ClockInActivity",
+                    "Cancel Worker"
+                )
             }
         }
     }
 
-    private fun alarm(hourOfDay: Int, minute: Int) {
-        val alarmManagerUtils = AlarmManagerUtils.getInstance(this)
-        alarmManagerUtils.createGetUpAlarmManager()
-        alarmManagerUtils.getUpAlarmManagerStartWork(hourOfDay, minute)
-        LogUtil.i(
-            "ClockInActivity",
-            "Set Time $hourOfDay $minute"
-        )
+    private fun alarm(hour: Int) {
+        val request = PeriodicWorkRequestBuilder<ClockWorker>(15, TimeUnit.MINUTES)
+            .addTag("Clock")
+            .setInputData(workDataOf("target" to hour))
+            .build()
+        WorkManager
+            .getInstance(this)
+            .enqueueUniquePeriodicWork("Clock", ExistingPeriodicWorkPolicy.KEEP, request)
     }
 
 

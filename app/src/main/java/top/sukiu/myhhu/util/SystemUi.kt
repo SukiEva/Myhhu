@@ -75,7 +75,7 @@ fun start(
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 fun notify(title: String? = "", body: String? = "") {
-    val notificationHelper = NotificationHelper(MyApplication.context)
+    val notificationHelper = NotificationUtil(MyApplication.context)
     val mBuilder = notificationHelper.getNotificationPrivate(title, body)
     mBuilder.setOnlyAlertOnce(true)
     mBuilder.setSmallIcon(R.drawable.launch_round)
