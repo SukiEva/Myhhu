@@ -68,11 +68,11 @@ class ShowResultsActivity : AppCompatActivity() {
             if (!terms.containsKey(termcode)) { // 学期还未出现
                 val tmp = mutableListOf<Course>()
                 tmp.add(grade)
-                terms.set(termcode, tmp)
+                terms[termcode] = tmp
             } else {
                 val tmp = terms.get(termcode)
                 tmp!!.add(grade)
-                terms.set(termcode, tmp)
+                terms[termcode] = tmp
             }
         }
     }

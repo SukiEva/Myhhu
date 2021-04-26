@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <item android:title="broser"
-          android:icon="@drawable/service_bar_broser"
-          app:showAsAction="ifRoom"
-          android:id="@+id/broser"/>
+    <item
+        android:id="@+id/broser"
+        android:icon="@drawable/service_bar_broser"
+        android:title="broser"
+        app:showAsAction="ifRoom" />
 </menu>

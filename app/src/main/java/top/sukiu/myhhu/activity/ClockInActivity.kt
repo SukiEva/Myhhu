@@ -32,6 +32,9 @@ import java.util.concurrent.TimeUnit
 
 class ClockInActivity : AppCompatActivity() {
 
+
+    private val TAG = "ClockInActivity"
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,7 +112,7 @@ class ClockInActivity : AppCompatActivity() {
                             alarm(hourOfDay)
                             toast("定时设置成功")
                             LogUtil.i(
-                                "ClockInActivity",
+                                TAG,
                                 "Set Time $hourOfDay Let's Start"
                             )
                         }
@@ -124,7 +127,7 @@ class ClockInActivity : AppCompatActivity() {
                 WorkManager.getInstance(this).cancelUniqueWork("Clock")
                 toast("定时设置已取消")
                 LogUtil.i(
-                    "ClockInActivity",
+                    TAG,
                     "Cancel Worker"
                 )
             }

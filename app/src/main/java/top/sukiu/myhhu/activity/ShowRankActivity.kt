@@ -14,6 +14,7 @@ import top.sukiu.myhhu.util.transportStatusBar
 
 class ShowRankActivity : AppCompatActivity() {
 
+    private val TAG = "ShowRankActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +55,7 @@ class ShowRankActivity : AppCompatActivity() {
                     val inst = Instrumentation()
                     inst.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
                 } catch (e: Exception) {
-                    LogUtil.d("ShowRankActivity", "Exception when onBack" + e.stackTrace)
+                    LogUtil.d(TAG, "Exception when onBack" + e.stackTrace)
                     e.printStackTrace()
                 }
             }

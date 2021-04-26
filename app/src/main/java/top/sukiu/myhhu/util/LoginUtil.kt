@@ -51,7 +51,7 @@ object LoginUtil {
             object : Runnable {
                 override fun run() {
                     try {
-                        val response = client!!.newCall(request).execute()
+                        val response = client.newCall(request).execute()
                         val `is`: InputStream = response.body!!.byteStream()
                         captchaPic = BitmapFactory.decodeStream(`is`)
                         checkCodePicture.post { checkCodePicture.setImageBitmap(captchaPic) }

@@ -23,6 +23,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    //private val TAG = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

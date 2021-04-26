@@ -9,11 +9,15 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
+import android.view.Gravity
 import android.view.Window
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import top.sukiu.myhhu.R
 import java.io.Serializable
+
 
 fun transportStatusBar(
     activity: Activity,
@@ -93,7 +97,52 @@ fun setSP(key: String, value: Any) {
     editor.apply()
 }
 
+fun setSPSet(key: String, value: Set<String>?) {
+    val editor = sp.edit()
+    editor.putStringSet(key, value)
+    editor.apply()
+}
+
+fun getSPSet(key: String): MutableSet<String>? {
+    return sp.getStringSet(key, null)
+}
+
 fun sp(key: String): String? {
     return sp.getString(key, "")
 }
 
+fun removeSP(key: String) {
+    val editor = sp.edit()
+    editor.remove(key)
+    editor.apply()
+}
+
+fun alertEdit(context: Context) {
+    val liner = LinearLayout(context)
+    liner.orientation = LinearLayout.VERTICAL
+    liner.gravity = Gravity.CENTER
+    val et1 = EditText(context)
+    et1.hint = "名称"
+    liner.addView(et1)
+    val et2 = EditText(context)
+    et2.hint = "网址，如 ：https://baidu.com"
+    liner.addView(et2)
+    AlertDialog.Builder(context).setTitle("请输入信息:）")
+        .setIcon(R.drawable.home_logo)
+        .setView(liner)
+        .setPositiveButton("确定") { _, _ ->
+            val name = et1.text.toString()
+            val url = et2.text.toString()
+            if (name == "" || url == "") {
+                toast("不能为空")
+            } else {
+                val stringSet = getSPSet("WEB")
+                stringSet?.add(name)
+                setSPSet("WEB", stringSet)
+                setSP(name, url)
+                toast("保存成功")
+            }
+        }
+        .setNegativeButton("取消", null)
+        .show()
+}

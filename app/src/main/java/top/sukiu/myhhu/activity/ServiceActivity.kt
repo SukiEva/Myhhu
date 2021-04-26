@@ -20,8 +20,9 @@ import top.sukiu.myhhu.util.transportStatusBar
 class ServiceActivity : AppCompatActivity() {
 
     var webUrl: String? = null
+    private val TAG = "ServiceActivity"
 
-    @SuppressLint("JavascriptInterface")
+    @SuppressLint("JavascriptInterface", "SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,18 +31,19 @@ class ServiceActivity : AppCompatActivity() {
         transportStatusBar(this, window, service_bar)
 
         webUrl = intent.getStringExtra("weburl")
-        LogUtil.i("ServiceActivity", " -> " + webUrl)
+        LogUtil.i(TAG, " -> $webUrl")
         try {
             web.loadUrl(webUrl!!)
         } catch (e: Exception) {
-            LogUtil.d("ServiceActivity", "LoadUrl Error")
+            LogUtil.d(TAG, "LoadUrl Error")
         }
         web.addJavascriptInterface(this, "android")
 
         web.webChromeClient = webChromeClient
-        web.setWebViewClient(object : WebViewClient() {
+        web.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) { //页面加载完成
                 progressBar.visibility = View.GONE
+                LogUtil.d(TAG, "Current Url is $url")
             }
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) { //页面开始加载
@@ -52,18 +54,23 @@ class ServiceActivity : AppCompatActivity() {
                 web.loadUrl(url)
                 return true
             }
-        })
+        }
         val webSettings: WebSettings = web.settings
         webSettings.javaScriptEnabled = true //允许使用js
-        webSettings.cacheMode = WebSettings.LOAD_NO_CACHE
+        webSettings.cacheMode = WebSettings.LOAD_DEFAULT
         webSettings.setSupportZoom(true)
-        webSettings.setBuiltInZoomControls(true)
-        webSettings.setDisplayZoomControls(false)
+        webSettings.builtInZoomControls = true
+        webSettings.displayZoomControls = false
     }
 
     //WebChromeClient主要辅助WebView处理Javascript的对话框、网站图标、网站title、加载进度等
     private val webChromeClient: WebChromeClient = object : WebChromeClient() {
-        override fun onJsAlert(webView: WebView, url: String, message: String, result: JsResult): Boolean {
+        override fun onJsAlert(
+            webView: WebView,
+            url: String,
+            message: String,
+            result: JsResult
+        ): Boolean {
             val localBuilder = AlertDialog.Builder(webView.context)
             localBuilder.setMessage(message).setPositiveButton("确定", null)
             localBuilder.setCancelable(false)
@@ -100,7 +107,11 @@ class ServiceActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.broser -> browse(webUrl!!)
+            R.id.broser -> {
+                if (webUrl == "http://myold.hhu.edu.cn/index.portal")
+                    browse("http://mywe.hhu.edu.cn/mobile/#/pages/index/index")
+                else browse(webUrl!!)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

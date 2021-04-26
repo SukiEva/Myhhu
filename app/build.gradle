@@ -11,8 +11,8 @@ android {
         applicationId "top.sukiu.myhhu"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 20210425
-        versionName "2.6"
+        versionCode 20210426
+        versionName "2.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,5 +51,6 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
     implementation 'org.jsoup:jsoup:1.13.1'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
 }

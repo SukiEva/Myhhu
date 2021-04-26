@@ -11,6 +11,8 @@ import top.sukiu.myhhu.util.transportStatusBar
 
 class AboutActivity : AppCompatActivity() {
 
+    private val TAG = "AboutActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
@@ -20,11 +22,11 @@ class AboutActivity : AppCompatActivity() {
 
         problem.setOnClickListener {
             browse("https://github.com/SukiEva/Myhhu/issues")
-            LogUtil.i("AboutActivity -> ", "https://github.com/SukiEva/Myhhu/issues")
+            LogUtil.i(TAG, " -> https://github.com/SukiEva/Myhhu/issues")
         }
         sourcecode.setOnClickListener {
             browse("https://github.com/SukiEva/Myhhu")
-            LogUtil.i("AboutActivity -> ", "https://github.com/SukiEva/Myhhu")
+            LogUtil.i(TAG, " -> https://github.com/SukiEva/Myhhu")
         }
     }
 

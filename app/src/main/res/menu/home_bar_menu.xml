@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <item android:title="setting" android:icon="@drawable/home_bar_about" app:showAsAction="ifRoom"
-          android:id="@+id/setting"/>
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/home_bar_about"
+        android:title="setting"
+        app:showAsAction="ifRoom" />
 </menu>

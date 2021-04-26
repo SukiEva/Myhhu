@@ -5,7 +5,7 @@
     android:id="@+id/Linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/bg"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".activity.ClockInActivity">
@@ -20,7 +20,7 @@
             android:id="@+id/clock_in_bar"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:background="@android:color/white"
+            android:background="@color/bg"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:navigationIcon="@drawable/toolbar_back"

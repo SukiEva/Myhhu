@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_weight="0"
-            android:background="@android:color/background_light"
+            android:background="@color/bg"
             android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -46,7 +46,7 @@
         android:layout_marginBottom="50dp"
         android:layout_weight="0"
         android:clickable="true"
-        app:backgroundTint="#FFFFFF"
+        app:backgroundTint="@color/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/grades_forward" />

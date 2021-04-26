@@ -13,6 +13,8 @@ import top.sukiu.myhhu.util.transportStatusBar
 
 class ScheduleActivity : AppCompatActivity() {
 
+    private val TAG = "ScheduleActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule)
@@ -36,7 +38,7 @@ class ScheduleActivity : AppCompatActivity() {
             finish()
         } catch (e: Exception) {
             toast("Wakeup not installed!")
-            LogUtil.d("ScheduleActivity", "Schedule Error: not installed")
+            LogUtil.d(TAG, "Schedule Error: not installed")
             e.printStackTrace()
         }
     }

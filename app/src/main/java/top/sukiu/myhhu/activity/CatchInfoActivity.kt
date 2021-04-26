@@ -17,6 +17,8 @@ import java.util.regex.Pattern
 
 class CatchInfoActivity : AppCompatActivity() {
 
+
+    private val TAG = ""
     private var currUrl: String = ""
     private var JavaScript: InJavaScriptLocalObj = InJavaScriptLocalObj()
 
@@ -28,17 +30,17 @@ class CatchInfoActivity : AppCompatActivity() {
         supportActionBar?.title = "Fetch Info"
         transportStatusBar(this, window, catch_info_bar)
 
-        webView.loadUrl("http://my.hhu.edu.cn/login.portal")
+        webView.loadUrl("http://myold.hhu.edu.cn/login.portal")
         webView.addJavascriptInterface(this, "android")
 
         webView.webChromeClient = webChromeClient
         webView.setWebViewClient(object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                if (url == "http://my.hhu.edu.cn/index.portal")
+                if (url == "http://myold.hhu.edu.cn/index.portal")
                     webView.loadUrl("http://form.hhu.edu.cn/pdc/formDesignApi/S/gUTwwojq")
                 else webView.loadUrl(url)
                 currUrl = url
-                LogUtil.i("CatchInfoActivity -> ", url)
+                LogUtil.i(TAG, " -> $url")
                 return true
             }
 
@@ -50,13 +52,13 @@ class CatchInfoActivity : AppCompatActivity() {
                 super.onPageFinished(view, url)
             }
         })
-        val webSettings: WebSettings = webView.getSettings()
+        val webSettings: WebSettings = webView.settings
         webSettings.javaScriptEnabled = true //允许使用js
         webView.addJavascriptInterface(JavaScript, "java_obj")
         webSettings.cacheMode = WebSettings.LOAD_NO_CACHE
         webSettings.setSupportZoom(true)
-        webSettings.setBuiltInZoomControls(true)
-        webSettings.setDisplayZoomControls(false)
+        webSettings.builtInZoomControls = true
+        webSettings.displayZoomControls = false
 
         FetchButton.setOnClickListener {
             fetchButtonHandle()
