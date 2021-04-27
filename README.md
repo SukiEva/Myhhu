@@ -9,12 +9,18 @@ App for hhuers based on Kotlin
 3. 官网校园服务
 4. 一键打卡
 5. 定时打卡 (因ROM不同，不保证成功)
-6. 常用网站入口
+6. 常用网站入口（可自定义）
 
 ### 计划功能
 1. JetPack Compose / Flutter 重构 UI
 2. 一键评教
 3. 一键选课
+
+### 下载地址
+[Github](https://github.com/SukiEva/Myhhu/releases)
+
+如果太慢可使用以下地址：
+[蓝奏云](https://suki.lanzous.com/i3iQlojp90h) 密码：5qdg
 
 #### 欢迎Star和Fork
 
