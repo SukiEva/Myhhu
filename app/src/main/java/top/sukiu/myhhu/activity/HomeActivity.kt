@@ -64,7 +64,7 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
             return
         }
         if (!item.isHeader) {
-            var url = sp(item.name)
+            var url = sp(item.name) as String
             when (item.name) {
                 "服务" -> url = "http://www.hhu.edu.cn/xyfw/list.htm"
                 "成绩" -> {
@@ -84,7 +84,7 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
                 alert(this, message = "网址不能为空")
                 return
             }
-            url?.let {
+            url.let {
                 LogUtil.i("HomeActivity -> ", url)
                 start(ServiceActivity::class.java, mapOf("weburl" to url))
                 return
@@ -94,20 +94,6 @@ class HomeActivity : AppCompatActivity(), OnItemClickListener {
 
     private val homeItemData: ArrayList<HomeEntity>
         get() = checkWebData()
-//            webList as ArrayList<HomeEntity>
-//            arrayListOf(
-//            HomeEntity(headerTitle = "基础功能"),
-//            HomeEntity("成绩", LoginActivity::class.java, R.drawable.home_course),
-//            HomeEntity("课表", ScheduleActivity::class.java, R.drawable.home_schedule),
-//            HomeEntity("服务", ServiceActivity::class.java, R.drawable.home_service),
-//            HomeEntity("打卡", ClockInActivity::class.java, R.drawable.home_daka),
-//            HomeEntity(headerTitle = "快捷入口"),
-//            HomeEntity("奥蓝系统", imageResource = R.drawable.home_alxt),
-//            HomeEntity("教务系统", imageResource = R.drawable.home_jwxt),
-//            HomeEntity("创训管理", imageResource = R.drawable.home_cxgl),
-//            HomeEntity("信息门户", imageResource = R.drawable.home_xxmh)
-//        )
-
 
     private fun checkWebData(): ArrayList<HomeEntity> {
         var stringSet = getSPSet("WEB")

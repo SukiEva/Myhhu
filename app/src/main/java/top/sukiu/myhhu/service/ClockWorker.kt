@@ -33,7 +33,6 @@ class ClockWorker(context: Context, workerParams: WorkerParameters) :
     override fun doWork(): Result {
         val targetHour =
             inputData.getInt("target", 12)
-        //val targetHour = target.toInt()
         val isPush = sp(FLAG)
         if (compareCurrentHour(targetHour)) {
             if (isPush == "false" || isPush == "")
@@ -41,21 +40,22 @@ class ClockWorker(context: Context, workerParams: WorkerParameters) :
             else return Result.retry()
         } else {
             setSP(FLAG, "false")
-            LogUtil.d("Worker", "Not At The TargetHour")
+            LogUtil.i("Worker", "Not At The TargetHour")
             return Result.retry()
         }
-        LogUtil.d("Worker", "Service Start")
         notify("每日健康打开", "开始")
         GlobalScope.launch {
+            LogUtil.i("Worker", "Service Start")
+            val isAtHome = sp("AtHome", bool = true) as Boolean
             UserData.setData()
-            UserData.clockIn(handler)
+            UserData.clockIn(handler, isAtHome = isAtHome)
         }
         return Result.success()
     }
 
     private fun compareCurrentHour(targetHour: Int): Boolean {
         val current = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-        LogUtil.d("Worker", "Now is $current , and Target is $targetHour")
+        LogUtil.i("Worker", "Now is $current , and Target is $targetHour")
         return current == targetHour
     }
 

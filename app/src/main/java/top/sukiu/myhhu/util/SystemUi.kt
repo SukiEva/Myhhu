@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
@@ -26,7 +27,7 @@ fun transportStatusBar(
     isDark: Boolean = false
 ) {
     StatusBarUtil.immersive(window)
-    StatusBarUtil.darkMode(activity, false)
+    StatusBarUtil.darkMode(activity, isDark)
     StatusBarUtil.darkMode(
         window,
         if (isDark) Color.BLACK else Color.WHITE,
@@ -35,6 +36,9 @@ fun transportStatusBar(
     StatusBarUtil.setPaddingSmart(MyApplication.context, toolbar)
 }
 
+fun isDarkTheme(): Boolean {
+    return MyApplication.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+}
 
 fun browse(url: String) {
     val intent = Intent(Intent.ACTION_VIEW)
@@ -107,8 +111,9 @@ fun getSPSet(key: String): MutableSet<String>? {
     return sp.getStringSet(key, null)
 }
 
-fun sp(key: String): String? {
-    return sp.getString(key, "")
+fun sp(key: String, bool: Boolean = false): Any? {
+    return if (bool) sp.getBoolean(key, false)
+    else sp.getString(key, "")
 }
 
 fun removeSP(key: String) {

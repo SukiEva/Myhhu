@@ -49,7 +49,8 @@ class SetEntryActivity : AppCompatActivity() {
                 val stringSet = getSPSet("WEB")
                 stringSet!!.remove(item)
                 setSPSet("WEB", stringSet)
-                toast("重启应用生效")
+                if (stringSet.size == 0) toast("恢复默认设置")
+                else toast("重启应用生效")
             }
 
             override fun onItemSwipeMoving(
@@ -62,7 +63,7 @@ class SetEntryActivity : AppCompatActivity() {
                 canvas?.drawColor(
                     ContextCompat.getColor(
                         this@SetEntryActivity,
-                        R.color.color_light_blue
+                        R.color.tan
                     )
                 );
             }

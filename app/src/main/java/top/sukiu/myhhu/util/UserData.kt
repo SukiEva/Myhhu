@@ -20,7 +20,6 @@ object UserData {
     var Room: String = ""   //宿舍号
     var PhoneNum: String = ""   //手机号码
     var Address: String = ""    //住址
-    var Where: String = ""  //在哪
 
     private var cookie: String? = null
     private val client = OkHttpClient().newBuilder()
@@ -54,18 +53,17 @@ object UserData {
         Room = readData("Room")
         PhoneNum = readData("PhoneNum")
         Address = readData("Address")
-        Where = readData("Where")
     }
 
-    fun clockIn(handler: Handler? = null) {
+    fun clockIn(handler: Handler? = null, isAtHome: Boolean = false) {
         Thread {
             try {
-                if (handler == null) postData()
+                if (handler == null) postData(isAtHome = isAtHome)
                 else {
                     val meg = Message.obtain()
                     meg.what = 100
                     handler.sendMessage(meg)
-                    postData(handler)
+                    postData(handler, isAtHome)
                     LogUtil.i("ClockIn", "Success")
                 }
             } catch (e: Exception) {
@@ -81,12 +79,12 @@ object UserData {
     }
 
 
-    private fun postData(handler: Handler? = null) {
+    private fun postData(handler: Handler? = null, isAtHome: Boolean = false) {
         val daka_save_url =
             "http://form.hhu.edu.cn/pdc/formDesignApi/dataFormSave?wid=$wid&userId=$account"
         val currdate = getDate()
         val requestBody: RequestBody
-        if (Where == "home") {
+        if (isAtHome) {
             requestBody = FormBody.Builder()
                 .add("DATETIME_CYCLE", currdate)
                 .add("XGH_336526", account)

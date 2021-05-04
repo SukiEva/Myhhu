@@ -60,7 +60,7 @@ class ClockInActivity : AppCompatActivity() {
         }
         if (sp("notify") == "true")
             notify.isChecked = true
-        if (sp("Where") == "home") {
+        if (sp("AtHome", bool = true) == true) {
             at_home.isChecked = true
             at_school.isChecked = false
         } else {
@@ -155,11 +155,10 @@ class ClockInActivity : AppCompatActivity() {
             return
         }
         if (at_home.isChecked)
-            setSP("Where", "home")
+            setSP("AtHome", true)
         else
-            setSP("Where", "school")
-
-        clockIn(handler)
+            setSP("AtHome", false)
+        clockIn(handler, at_home.isChecked)
     }
 
 
