@@ -22,7 +22,8 @@ App for hhuers based on Kotlin
 [Github](https://github.com/SukiEva/Myhhu/releases)
 
 如果太慢可使用以下地址：
-[蓝奏云](https://suki.lanzous.com/b01o8r3ji) 密码：myhhu
+[蓝奏云](https://suki.lanzous.com/b01o8r3ji) 
+密码：myhhu
 
 #### 欢迎Star和Fork
 
