@@ -6,4 +6,5 @@
     <!--  About  -->
     <string name="settings_about">About</string>
     <string name="about_info">A third-party app for hhuers</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>
