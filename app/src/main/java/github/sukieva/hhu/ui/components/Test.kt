@@ -4,18 +4,18 @@ import android.content.res.Configuration
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import github.sukieva.hhu.ui.theme.MyTheme
+import github.sukieva.hhu.ui.activity.base.InitView
 
 
 @Preview(
@@ -33,8 +33,8 @@ import github.sukieva.hhu.ui.theme.MyTheme
 fun LightPreview() {
     InitView {
         Column(modifier = Modifier.fillMaxHeight()) {
-            HomeToolBar("我说标题")
-            MessageCard()
+            //HomeToolBar("我说标题")
+            //MessageCard()
         }
     }
 }
@@ -67,25 +67,3 @@ fun Counter(count: Int, updateCount: (Int) -> Unit) {
 }
 
 
-@Composable
-fun InitView(content: @Composable () -> Unit) {
-    TransparentSystemBar()
-    MyTheme {
-        Surface(color = MaterialTheme.colors.background) {
-            content()
-        }
-    }
-}
-
-
-@Composable
-fun TransparentSystemBar() {
-    val systemUiController = rememberSystemUiController()
-    val useDarkIcons = !isSystemInDarkTheme()
-    SideEffect {
-        systemUiController.setSystemBarsColor(
-            color = Color.Transparent,
-            darkIcons = useDarkIcons
-        )
-    }
-}

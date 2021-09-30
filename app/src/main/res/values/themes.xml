@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Hhu" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -22,4 +22,15 @@
     <style name="Theme.Hhu.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Hhu.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--About Page-->
+    <style name="AppTheme.About" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/about_bg_light</item>
+        <item name="colorPrimaryDark">@color/about_bg_light</item>
+        <item name="colorAccent">@color/about_bg_light</item>
+
+        <!--optional-->
+        <item name="aboutPageHeaderBackground">@color/about_bg_light</item>
+        <item name="aboutPageHeaderTextColor">@color/white</item>
+    </style>
 </resources>

@@ -1,67 +1,75 @@
 package github.sukieva.hhu.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.rememberInsetsPaddingValues
+import com.google.accompanist.insets.ui.TopAppBar
 import github.sukieva.hhu.R
+import github.sukieva.hhu.ui.activity.base.InitView
+import github.sukieva.hhu.ui.theme.Teal200
 
 
 @Composable
-fun MessageCard(msg1: String = "hello", msg2: String = "world") {
-    Row(
-        modifier = Modifier
-            .padding(all = 8.dp)
-            .width(IntrinsicSize.Max)
-    ) {
-        Image(
-            painter = painterResource(R.drawable.ic_launcher_foreground),
-            contentDescription = null,
-            modifier = Modifier
-                .size(40.dp)
-                .clip(CircleShape)
-                .border(1.5.dp, MaterialTheme.colors.secondary, CircleShape)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-
-        Column {
-            Text(
-                text = msg1,
-                color = MaterialTheme.colors.secondaryVariant,
-                style = MaterialTheme.typography.subtitle2
+fun HomeAppBar() {
+    MaterialAppBar(
+        modifier = Modifier.padding(top = 20.dp,bottom = 20.dp),
+        title = {
+            Column {
+                MaterialHead(text = stringResource(id = R.string.app_name))
+                Spacer(modifier = Modifier.height(10.dp))
+                MaterialSub(text = stringResource(id = R.string.home_subtitle), color = Teal200)
+            }
+        },
+        navigationIcon = {
+            Image(
+                painter = painterResource(R.drawable.home_logo),
+                contentDescription = "Home logo"
             )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = msg2,
-                style = MaterialTheme.typography.body2
-            )
+        },
+        actions = {
+            HomeMenu()
         }
-    }
+    )
 }
 
 @Composable
-fun HomeToolBar(title: String) {
+fun MaterialAppBar(
+    modifier: Modifier = Modifier,
+    title: @Composable () -> Unit = {},
+    navigationIcon: @Composable () -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {}
+) {
     TopAppBar(
+        modifier = modifier.fillMaxWidth(),
         backgroundColor = MaterialTheme.colors.background,
+        contentColor = MaterialTheme.colors.onSurface,
+        elevation = 0.dp, // No shadow needed
+        title = title,
+        navigationIcon = navigationIcon,
         contentPadding = rememberInsetsPaddingValues(
             LocalWindowInsets.current.statusBars,
             applyStart = true,
-            additionalStart = 20.dp
+            additionalStart = 10.dp,
+            applyEnd = true,
+            additionalEnd = 10.dp
         ),
-    ) {
-        Text(text = title)
-    }
+        actions = actions
+    )
 }
 
+
+@Preview
+@Composable
+fun AppBarPreview() {
+    InitView {
+        HomeAppBar()
+    }
+}

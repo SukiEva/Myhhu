@@ -1,5 +1,6 @@
 package github.sukieva.hhu.utils
 
+
 import android.view.View
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
@@ -17,3 +18,5 @@ fun Int.showToast(duration: Int = Toast.LENGTH_SHORT) {
 fun View.showSnackbar(text: String, duration: Int = Snackbar.LENGTH_SHORT) {
     // TODO: 2021/9/28  
 }
+
+
