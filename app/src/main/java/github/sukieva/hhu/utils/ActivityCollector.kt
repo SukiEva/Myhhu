@@ -14,6 +14,12 @@ object ActivityCollector {
         activities.remove(activity)
     }
 
+    fun finishTopActivity() {
+        val topActivity = activities[activities.lastIndex]
+        if (!topActivity.isFinishing) topActivity.finish()
+        removeActivity(topActivity)
+    }
+
     fun finishAllActivity() {
         for (activity in activities) {
             if (!activity.isFinishing)

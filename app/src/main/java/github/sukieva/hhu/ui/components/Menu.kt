@@ -13,6 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import github.sukieva.hhu.R
 import github.sukieva.hhu.ui.activity.AboutActivity
 import github.sukieva.hhu.ui.activity.base.InitView
+import github.sukieva.hhu.ui.theme.fontBody
+import github.sukieva.hhu.utils.ActivityCollector
 import github.sukieva.hhu.utils.browse
 import github.sukieva.hhu.utils.start
 
@@ -28,24 +30,33 @@ fun HomeMenu() {
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
-            DropdownMenuItem(onClick = { /* Handle refresh! */ }) {
-                MaterialBody(stringResource(id = R.string.home_menu_add))
+            DropdownMenuItem(onClick = { ActivityCollector.finishAllActivity() }) {
+                MaterialFont(stringResource(id = R.string.home_menu_exit))
             }
             Divider()
             DropdownMenuItem(onClick = { browse("https://github.com/SukiEva/Myhhu/issues") }) {
-                MaterialBody(stringResource(id = R.string.home_menu_issue))
+                MaterialFont(stringResource(id = R.string.home_menu_issue))
             }
-            DropdownMenuItem(onClick = { start(AboutActivity::class.java) }) {
-                MaterialBody(stringResource(id = R.string.home_menu_about))
+            DropdownMenuItem(onClick = { start<AboutActivity>() }) {
+                MaterialFont(stringResource(id = R.string.home_menu_about))
             }
         }
     }
 }
 
+@Composable
+fun MaterialFont(
+    text: String,
+) {
+    Text(
+        text = text,
+        color = MaterialTheme.colors.fontBody,
+        style = MaterialTheme.typography.body1
+    )
+}
+
 @Preview
 @Composable
 fun HomeMenuPreview() {
-    InitView {
-        HomeMenu()
-    }
+    HomeMenu()
 }

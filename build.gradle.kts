@@ -10,7 +10,7 @@ buildscript {
     }
 }
 
-val defaultManagerPackageName by extra("github.sukieva.hhuer")
+val defaultManagerPackageName by extra("com.github.sukieva.hhuer")
 val verCode by extra(20210924)
 val verName by extra("1.0")
 val androidTargetSdkVersion by extra(31)

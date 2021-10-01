@@ -1,16 +1,24 @@
 <resources>
     <string name="app_name">Myhhu</string>
-<!--    <string name="title_activity_base">BaseActivity</string>-->
     <string name="title_activity_about">关于</string>
 
     <!--  Home  -->
     <string name="home_subtitle">愿你对自己忠诚</string>
-    <string name="home_menu_add">添加网站</string>
-    <string name="home_menu_issue">反馈问题</string>
+    <string name="home_menu_exit">退出</string>
+    <string name="home_menu_issue">反馈</string>
     <string name="home_menu_about">关于</string>
+    <string name="home_card_checkin">健康打卡</string>
+    <string name="home_card_results">成绩查询</string>
+    <string name="home_card_schedule">课表</string>
+    <string name="home_list_favourite">收藏</string>
+    <string name="home_list_config">配置</string>
+
 
     <!--  About  -->
     <string name="settings_about">关于</string>
     <string name="about_info">河海大学第三方E河海</string>
 
+    <!--  WebView  -->
+    <string name="error_not_found_app">未找到相关应用</string>
+    <string name="error_happen">出错啦</string>
 </resources>

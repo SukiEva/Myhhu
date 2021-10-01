@@ -2,7 +2,13 @@ package github.sukieva.hhu.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -15,17 +21,36 @@ import com.google.accompanist.insets.ui.TopAppBar
 import github.sukieva.hhu.R
 import github.sukieva.hhu.ui.activity.base.InitView
 import github.sukieva.hhu.ui.theme.Teal200
+import github.sukieva.hhu.utils.ActivityCollector
 
+@Composable
+fun MaterialTopAppBar(
+    title: String = "Title",
+    navigationIcon: @Composable () -> Unit = {
+        IconButton(onClick = { ActivityCollector.finishTopActivity() }) {
+            Icon(Icons.Filled.ArrowBack, contentDescription = "Arrow back")
+        }
+    },
+    actions: @Composable RowScope.() -> Unit = {}
+) {
+    MaterialAppBar(
+        title = {
+            Text(text = title, style = MaterialTheme.typography.h6)
+        },
+        navigationIcon = navigationIcon,
+        actions = actions
+    )
+}
 
 @Composable
 fun HomeAppBar() {
     MaterialAppBar(
-        modifier = Modifier.padding(top = 20.dp,bottom = 20.dp),
+        modifier = Modifier.padding(top = 20.dp, bottom = 20.dp),
         title = {
             Column {
-                MaterialHead(text = stringResource(id = R.string.app_name))
+                Text(text = stringResource(id = R.string.app_name), style = MaterialTheme.typography.h6)
                 Spacer(modifier = Modifier.height(10.dp))
-                MaterialSub(text = stringResource(id = R.string.home_subtitle), color = Teal200)
+                Text(text = stringResource(id = R.string.home_subtitle), color = Teal200, style = MaterialTheme.typography.subtitle2)
             }
         },
         navigationIcon = {

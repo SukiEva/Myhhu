@@ -1,24 +1,58 @@
 package github.sukieva.hhu.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CheckCircleOutline
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.rounded.ManageSearch
+import androidx.compose.material.icons.rounded.PendingActions
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import github.sukieva.hhu.ui.activity.base.InitView
 import github.sukieva.hhu.ui.theme.*
+import github.sukieva.hhu.utils.infoToast
+import github.sukieva.hhu.R
 
-@ExperimentalMaterialApi
+@Composable
+fun CardCheckIn() {
+    CardItem(
+        isLarge = true,
+        isActive = true,
+        onClick = { "点击了".infoToast() },
+        title = stringResource(id = R.string.home_card_checkin),
+        body = "已经打卡"
+    )
+}
+
+@Composable
+fun CardGradeQuery() {
+    CardItem(
+        title = stringResource(id = R.string.home_card_results),
+        body = "加油",
+        icon = Icons.Rounded.ManageSearch
+    )
+}
+
+@Composable
+fun CardSchedule() {
+    CardItem(
+        title = stringResource(id = R.string.home_card_schedule),
+        body = "今天无课",
+        icon = Icons.Rounded.PendingActions
+    )
+}
+
+
 @Composable
 fun CardItem(
     modifier: Modifier = Modifier,
@@ -32,12 +66,12 @@ fun CardItem(
     val cardHeight = if (isLarge) 100.dp else 80.dp
     Card(
         modifier = modifier
-            .padding(start = 15.dp, end = 15.dp, top = 10.dp)
+            .padding(start = 25.dp, end = 25.dp, top = 10.dp)
             .fillMaxWidth()
-            .height(cardHeight),
-        elevation = 0.5.dp,
+            .height(cardHeight)
+            .clickable { onClick() },
+        elevation = 1.dp,
         shape = MaterialTheme.shapes.small,
-        onClick = onClick,
         backgroundColor = when {
             isLarge && isActive -> MaterialTheme.colors.cardFlash
             isLarge -> Color.Gray
@@ -53,7 +87,7 @@ fun CardItem(
             Image(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .size(30.dp),
+                    .size(35.dp),
                 imageVector = icon,
                 contentDescription = "Card icon",
                 colorFilter = ColorFilter.tint(color = if (isLarge) MaterialTheme.colors.fontFlash else MaterialTheme.colors.fontBody)
@@ -62,7 +96,8 @@ fun CardItem(
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .padding(top = 5.dp, bottom = 5.dp)
+                    .padding(top = 5.dp, bottom = 5.dp),
+                verticalArrangement = Arrangement.Center
             ) {
                 if (isLarge) Spacer(modifier = Modifier.height(5.dp))
                 Text(
@@ -82,10 +117,7 @@ fun CardItem(
     }
 }
 
-@ExperimentalMaterialApi
-@Preview(
-//    showSystemUi = true
-)
+@Preview
 @Composable
 fun CardPreview() {
     InitView {
