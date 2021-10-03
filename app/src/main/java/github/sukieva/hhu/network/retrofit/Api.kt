@@ -1,4 +1,4 @@
-package github.sukieva.hhu.network
+package github.sukieva.hhu.network.retrofit
 
 import github.sukieva.hhu.data.bean.LoginData
 import retrofit2.Call

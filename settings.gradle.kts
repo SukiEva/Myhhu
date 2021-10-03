@@ -78,10 +78,12 @@ dependencyResolutionManagement {
             // Lifecycle
             alias("lifecycle-viewmodelCompose").to("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
             alias("lifecycle-runtimeKtx").to("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+            alias("lifecycle-livedataKtx").to("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
             bundle(
                 "lifecycle", listOf(
                     "lifecycle-viewmodelCompose", // viewModel
-                    "lifecycle-runtimeKtx" // Lifecycles only (without ViewModel or LiveData)
+                    "lifecycle-runtimeKtx", // Lifecycles only (without ViewModel or LiveData)
+                    "lifecycle-livedataKtx", // liveData
                 )
             )
 
@@ -99,13 +101,13 @@ dependencyResolutionManagement {
             alias("drakeet-about").to("com.drakeet.about:about:2.4.1")
             alias("drakeet-multitype").to("com.drakeet.multitype:multitype:4.3.0")
             alias("github-toasty").to("com.github.GrenderG:Toasty:1.5.2")
-            alias("coil-compose").to("io.coil-kt:coil-compose:1.3.2")
+            //alias("coil-compose").to("io.coil-kt:coil-compose:1.3.2")
             bundle(
                 "thirdparty", listOf(
                     "drakeet-about",
                     "drakeet-multitype",
                     "github-toasty",
-                    "coil-compose" // 网络加载远程图片
+                    //"coil-compose" // 网络加载远程图片
                 )
             )
         }

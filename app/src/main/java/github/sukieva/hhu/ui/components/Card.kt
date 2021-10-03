@@ -22,6 +22,8 @@ import github.sukieva.hhu.ui.activity.base.InitView
 import github.sukieva.hhu.ui.theme.*
 import github.sukieva.hhu.utils.infoToast
 import github.sukieva.hhu.R
+import github.sukieva.hhu.ui.activity.ResultsActivity
+import github.sukieva.hhu.utils.start
 
 @Composable
 fun CardCheckIn() {
@@ -39,7 +41,10 @@ fun CardGradeQuery() {
     CardItem(
         title = stringResource(id = R.string.home_card_results),
         body = "加油",
-        icon = Icons.Rounded.ManageSearch
+        icon = Icons.Rounded.ManageSearch,
+        onClick = {
+            start<ResultsActivity>()
+        }
     )
 }
 

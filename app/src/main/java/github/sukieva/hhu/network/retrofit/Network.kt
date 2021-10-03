@@ -1,4 +1,4 @@
-package github.sukieva.hhu.network
+package github.sukieva.hhu.network.retrofit
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,15 +10,15 @@ import kotlin.coroutines.suspendCoroutine
 
 object Network {
 
-    private val jwxtService = ServiceCreator.create<Api>()
+    private val service = ServiceCreator.create<Api>()
 
-    suspend fun login(data: LoginData) = jwxtService.login(data).await()
+    suspend fun login(data: LoginData) = service.login(data).await()
 
-    suspend fun getCaptchaPic() = jwxtService.getCaptchaPic().await()
+    suspend fun getCaptchaPic() = service.getCaptchaPic().await()
 
-    suspend fun getGrades() = jwxtService.getGrades().await()
+    suspend fun getGrades() = service.getGrades().await()
 
-    suspend fun getRank() = jwxtService.getRank().await()
+    suspend fun getRank() = service.getRank().await()
 
 
     private suspend fun <T> Call<T>.await(): T {

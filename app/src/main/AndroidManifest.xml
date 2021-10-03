@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hhu.NoActionBar"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".ui.activity.ResultsActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.ConfigActivity"
             android:exported="false" />
