@@ -6,13 +6,10 @@ object ActivityCollector {
 
     private val activities = ArrayList<Activity>()
 
-    fun addActivity(activity: Activity) {
-        activities.add(activity)
-    }
+    fun addActivity(activity: Activity) = activities.add(activity)
 
-    fun removeActivity(activity: Activity) {
-        activities.remove(activity)
-    }
+    fun removeActivity(activity: Activity) = activities.remove(activity)
+
 
     fun finishTopActivity() {
         val topActivity = activities[activities.lastIndex]

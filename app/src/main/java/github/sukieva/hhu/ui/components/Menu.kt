@@ -12,7 +12,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import github.sukieva.hhu.R
 import github.sukieva.hhu.ui.activity.AboutActivity
-import github.sukieva.hhu.ui.activity.base.InitView
 import github.sukieva.hhu.ui.theme.fontBody
 import github.sukieva.hhu.utils.ActivityCollector
 import github.sukieva.hhu.utils.browse

@@ -3,17 +3,19 @@ plugins {
     id("kotlin-android")
 }
 
-val androidTargetSdkVersion: Int by rootProject.extra
-val androidMinSdkVersion: Int by rootProject.extra
-val androidBuildToolsVersion: String by rootProject.extra
-val androidCompileSdkVersion: Int by rootProject.extra
-val androidCompileNdkVersion: String by rootProject.extra
-val defaultManagerPackageName: String by rootProject.extra
-val verCode: Int by rootProject.extra
-val verName: String by rootProject.extra
 
 
 android {
+    val androidTargetSdkVersion: Int by rootProject.extra
+    val androidMinSdkVersion: Int by rootProject.extra
+    val androidBuildToolsVersion: String by rootProject.extra
+    val androidCompileSdkVersion: Int by rootProject.extra
+    val androidCompileNdkVersion: String by rootProject.extra
+    val defaultManagerPackageName: String by rootProject.extra
+    val verCode: Int by rootProject.extra
+    val verName: String by rootProject.extra
+
+
     compileSdk = androidCompileSdkVersion
     ndkVersion = androidCompileNdkVersion
     buildToolsVersion = androidBuildToolsVersion
@@ -60,35 +62,13 @@ android {
 }
 
 dependencies {
-    val accompanistVersion = "0.18.0"
-    val composeVersion = "1.0.2"
-    val lifecycleVersion = "2.4.0-beta01"
 
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
-    implementation("androidx.compose.material:material:$composeVersion")
-    implementation("androidx.compose.foundation:foundation:$composeVersion")
-    implementation("androidx.compose.material:material-icons-core:$composeVersion")
-    implementation("androidx.compose.material:material-icons-extended:$composeVersion")
+    implementation(libs.bundles.androidx)
+    implementation(libs.bundles.kotlinx)
+    implementation(libs.bundles.compose)
+    implementation(libs.bundles.accompanist)
+    implementation(libs.bundles.lifecycle)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.thirdparty)
 
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-    implementation("androidx.activity:activity-compose:1.3.1")
-
-    implementation("com.google.accompanist:accompanist-insets:$accompanistVersion")
-    implementation("com.google.accompanist:accompanist-insets-ui:$accompanistVersion")
-    implementation("com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion")
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
-
-    implementation("com.squareup.okhttp3:okhttp:4.9.2")
-    implementation("com.google.code.gson:gson:2.8.8")
-    implementation("com.drakeet.about:about:2.4.1")
-    implementation("com.drakeet.multitype:multitype:4.3.0")
-    implementation("com.github.GrenderG:Toasty:1.5.2")
 }
