@@ -20,4 +20,5 @@
     <!--  WebView  -->
     <string name="error_not_found_app">Can\'t find related apps</string>
     <string name="error_happen">Something went wrong</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>

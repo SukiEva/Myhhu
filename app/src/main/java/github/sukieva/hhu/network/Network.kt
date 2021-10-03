@@ -8,9 +8,9 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-object JwxtNetwork {
+object Network {
 
-    private val jwxtService = ServiceCreator.create<JwxtService>()
+    private val jwxtService = ServiceCreator.create<Api>()
 
     suspend fun login(data: LoginData) = jwxtService.login(data).await()
 

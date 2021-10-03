@@ -33,4 +33,13 @@
         <item name="aboutPageHeaderBackground">@color/about_bg_light</item>
         <item name="aboutPageHeaderTextColor">@color/white</item>
     </style>
+
+    <style name="Theme.Hhu.NoActionBar.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Hhu.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Hhu.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

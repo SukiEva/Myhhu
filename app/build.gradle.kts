@@ -4,26 +4,24 @@ plugins {
 }
 
 
-
 android {
-    val androidTargetSdkVersion: Int by rootProject.extra
-    val androidMinSdkVersion: Int by rootProject.extra
+    val targetSdkVersion: Int by rootProject.extra
+    val minSdkVersion: Int by rootProject.extra
     val androidBuildToolsVersion: String by rootProject.extra
-    val androidCompileSdkVersion: Int by rootProject.extra
-    val androidCompileNdkVersion: String by rootProject.extra
-    val defaultManagerPackageName: String by rootProject.extra
+    val compileSdkVersion: Int by rootProject.extra
+    val compileNdkVersion: String by rootProject.extra
+    val packageName: String by rootProject.extra
     val verCode: Int by rootProject.extra
     val verName: String by rootProject.extra
 
-
-    compileSdk = androidCompileSdkVersion
-    ndkVersion = androidCompileNdkVersion
+    compileSdk = compileSdkVersion
+    ndkVersion = compileNdkVersion
     buildToolsVersion = androidBuildToolsVersion
 
     defaultConfig {
-        applicationId = defaultManagerPackageName
-        minSdk = androidMinSdkVersion
-        targetSdk = androidTargetSdkVersion
+        applicationId = packageName
+        minSdk = minSdkVersion
+        targetSdk = targetSdkVersion
         versionCode = verCode
         versionName = verName
 
@@ -70,5 +68,8 @@ dependencies {
     implementation(libs.bundles.lifecycle)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.thirdparty)
+
+    debugImplementation("androidx.compose.ui:ui-tooling:1.0.2")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.2")
 
 }
