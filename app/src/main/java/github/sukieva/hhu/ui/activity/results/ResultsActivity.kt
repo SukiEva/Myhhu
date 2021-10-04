@@ -1,14 +1,12 @@
-package github.sukieva.hhu.ui.activity
+package github.sukieva.hhu.ui.activity.results
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.lifecycle.ViewModelProvider
-import github.sukieva.hhu.network.EasyOkhttp
 import github.sukieva.hhu.ui.activity.base.BaseActivity
 import github.sukieva.hhu.ui.activity.base.InitView
 import github.sukieva.hhu.ui.components.CaptchaPic
 import github.sukieva.hhu.ui.components.MaterialTopAppBar
-import github.sukieva.hhu.ui.viewmodel.ResultsViewModel
 
 class ResultsActivity : BaseActivity() {
 
@@ -18,16 +16,12 @@ class ResultsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(ResultsViewModel::class.java)
+        val isLogin = intent.getBooleanExtra("isLogin", false)
 
         setContent {
-            InitView {
-                MaterialTopAppBar()
-                CaptchaPic()
-            }
+            ResultsView()
         }
-        viewModel.getCaptchaPic()
 
-        val isLogin = intent.getBooleanExtra("isLogin", false)
 
     }
 

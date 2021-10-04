@@ -23,7 +23,7 @@ object DataManager {
             is String -> dataStore.edit { it[stringPreferencesKey(key)] = value }
             is Boolean -> dataStore.edit { it[booleanPreferencesKey(key)] = value }
             is Float -> dataStore.edit { it[floatPreferencesKey(key)] = value }
-            else -> throw IllegalArgumentException("This type can be saved into DataStore")
+            else -> throw IllegalArgumentException("This type can't be saved into DataStore")
         }
     }
 
@@ -36,7 +36,7 @@ object DataManager {
             is String -> dataStore.data.map { it[stringPreferencesKey(key)] ?: "" }
             is Boolean -> dataStore.data.map { it[booleanPreferencesKey(key)] ?: Boolean }
             is Float -> dataStore.data.map { it[floatPreferencesKey(key)] ?: 0f }
-            else -> throw IllegalArgumentException("This type can be saved into DataStore")
+            else -> throw IllegalArgumentException("This type can't be read")
         }
         //scope.launch { data.first() }
         return data.first() as T

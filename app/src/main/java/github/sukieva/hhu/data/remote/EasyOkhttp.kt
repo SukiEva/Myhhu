@@ -1,4 +1,4 @@
-package github.sukieva.hhu.network
+package github.sukieva.hhu.data.remote
 
 import okhttp3.*
 import java.io.IOException
@@ -11,7 +11,7 @@ object EasyOkhttp {
 
     val sessionCookieJar = SessionCookieJar()
 
-    private val okHttpClient = OkHttpClient().newBuilder()
+    val okHttpClient = OkHttpClient().newBuilder()
         .connectTimeout(10, TimeUnit.SECONDS)
         .readTimeout(10, TimeUnit.SECONDS)
         .cookieJar(sessionCookieJar)
@@ -23,6 +23,7 @@ object EasyOkhttp {
             else Request.Builder().url(address).build()
         okHttpClient.newCall(request).enqueue(callback)
     }
+
 
 
     suspend fun request(address: String, body: RequestBody? = null): String {

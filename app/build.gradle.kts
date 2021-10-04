@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 
@@ -67,9 +68,12 @@ dependencies {
     implementation(libs.bundles.accompanist)
     implementation(libs.bundles.lifecycle)
     implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.room)
     implementation(libs.bundles.thirdparty)
+
+    kapt("androidx.room:room-compiler:2.3.0")
+
     implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
 
     debugImplementation("androidx.compose.ui:ui-tooling:1.0.2")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.2")

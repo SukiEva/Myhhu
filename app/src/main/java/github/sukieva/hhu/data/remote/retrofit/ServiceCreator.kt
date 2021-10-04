@@ -1,6 +1,6 @@
-package github.sukieva.hhu.network.retrofit
+package github.sukieva.hhu.data.remote.retrofit
 
-import github.sukieva.hhu.network.EasyOkhttp.sessionCookieJar
+import github.sukieva.hhu.data.remote.EasyOkhttp.sessionCookieJar
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -8,54 +8,14 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CheckCircleOutline
-import androidx.compose.material.icons.rounded.ManageSearch
-import androidx.compose.material.icons.rounded.PendingActions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import github.sukieva.hhu.ui.activity.base.InitView
 import github.sukieva.hhu.ui.theme.*
-import github.sukieva.hhu.utils.infoToast
-import github.sukieva.hhu.R
-import github.sukieva.hhu.ui.activity.ResultsActivity
-import github.sukieva.hhu.utils.start
-
-@Composable
-fun CardCheckIn() {
-    CardItem(
-        isLarge = true,
-        isActive = true,
-        onClick = { "点击了".infoToast() },
-        title = stringResource(id = R.string.home_card_checkin),
-        body = "已经打卡"
-    )
-}
-
-@Composable
-fun CardGradeQuery() {
-    CardItem(
-        title = stringResource(id = R.string.home_card_results),
-        body = "加油",
-        icon = Icons.Rounded.ManageSearch,
-        onClick = {
-            start<ResultsActivity>()
-        }
-    )
-}
-
-@Composable
-fun CardSchedule() {
-    CardItem(
-        title = stringResource(id = R.string.home_card_schedule),
-        body = "今天无课",
-        icon = Icons.Rounded.PendingActions
-    )
-}
 
 
 @Composable
@@ -124,8 +84,6 @@ fun CardItem(
 
 @Preview
 @Composable
-fun CardPreview() {
-    InitView {
-        CardItem()
-    }
+fun CardItemPreview() {
+    CardItem()
 }

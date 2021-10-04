@@ -20,6 +20,7 @@ dependencyResolutionManagement {
             val accompanistVersion = "0.18.0"
             val lifecycleVersion = "2.4.0-beta01"
             val retrofitVersion = "2.9.0"
+            val roomVersion = "2.3.0"
 
 
             // AndroidX
@@ -97,17 +98,27 @@ dependencyResolutionManagement {
                 )
             )
 
+            // Room
+            alias("room-runtime").to("androidx.room:room-runtime:$roomVersion")
+            alias("room-ktx").to("androidx.room:room-ktx:$roomVersion")
+            bundle(
+                "room", listOf(
+                    "room-runtime",
+                    "room-ktx"
+                )
+            )
+
             // Third Party
             alias("drakeet-about").to("com.drakeet.about:about:2.4.1")
             alias("drakeet-multitype").to("com.drakeet.multitype:multitype:4.3.0")
             alias("github-toasty").to("com.github.GrenderG:Toasty:1.5.2")
-            //alias("coil-compose").to("io.coil-kt:coil-compose:1.3.2")
+            alias("coil-compose").to("io.coil-kt:coil-compose:1.3.2")
             bundle(
                 "thirdparty", listOf(
                     "drakeet-about",
                     "drakeet-multitype",
                     "github-toasty",
-                    //"coil-compose" // 网络加载远程图片
+                    "coil-compose" // 网络加载远程图片
                 )
             )
         }

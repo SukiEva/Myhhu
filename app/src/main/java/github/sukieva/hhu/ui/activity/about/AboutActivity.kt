@@ -1,4 +1,4 @@
-package github.sukieva.hhu.ui.activity
+package github.sukieva.hhu.ui.activity.about
 
 import android.widget.ImageView
 import android.widget.TextView
