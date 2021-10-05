@@ -15,7 +15,14 @@
 
     <!-- Favourite -->
     <string name="appbar_reset">Reset to default</string>
-
+    <string name="dialog_title">Add a new website</string>
+    <string name="dialog_web_name">Name</string>
+    <string name="dialog_web_url">Url</string>
+    <string name="dialog_error_null">Can\'t be empty</string>
+    <string name="dialog_error_not_valid">Url is invalid</string>
+    <string name="dialog_press_message">\nSure to remove the URL?</string>
+    <string name="dialog_press_confirm">Confirm</string>
+    <string name="dialog_press_cancel">Cancel</string>
 
     <!--  About  -->
     <string name="settings_about">About</string>

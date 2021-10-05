@@ -29,14 +29,23 @@ fun HomeMenu() {
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
-            DropdownMenuItem(onClick = { ActivityCollector.finishAllActivity() }) {
+            DropdownMenuItem(onClick = {
+                ActivityCollector.finishAllActivity()
+                expanded = false
+            }) {
                 MaterialFont(stringResource(id = R.string.home_menu_exit))
             }
             Divider()
-            DropdownMenuItem(onClick = { browse("https://github.com/SukiEva/Myhhu/issues") }) {
+            DropdownMenuItem(onClick = {
+                browse("https://github.com/SukiEva/Myhhu/issues")
+                expanded = false
+            }) {
                 MaterialFont(stringResource(id = R.string.home_menu_issue))
             }
-            DropdownMenuItem(onClick = { start<AboutActivity>() }) {
+            DropdownMenuItem(onClick = {
+                start<AboutActivity>()
+                expanded = false
+            }) {
                 MaterialFont(stringResource(id = R.string.home_menu_about))
             }
         }

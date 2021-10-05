@@ -1,9 +1,6 @@
-package github.sukieva.hhu.data.entity
+package github.sukieva.hhu.data.entity.bean
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 
-@Entity
 data class PostData(
     var maccount: String,
     var mwid: String,
@@ -15,7 +12,4 @@ data class PostData(
     var mbuilding: String,
     var mroom: String,
     var mphone: String
-) {
-    @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
-}
+)

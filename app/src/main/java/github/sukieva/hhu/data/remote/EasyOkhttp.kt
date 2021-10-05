@@ -17,7 +17,7 @@ object EasyOkhttp {
         .cookieJar(sessionCookieJar)
         .build()
 
-    private fun sendHttpRequest(address: String, body: RequestBody? = null, callback: Callback) {
+    fun sendHttpRequest(address: String, body: RequestBody? = null, callback: Callback) {
         val request =
             if (body != null) Request.Builder().url(address).post(body).build()
             else Request.Builder().url(address).build()

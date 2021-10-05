@@ -18,7 +18,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.activity.config.ConfigActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.activity.favourite.FavouriteActivity"
             android:exported="false" />

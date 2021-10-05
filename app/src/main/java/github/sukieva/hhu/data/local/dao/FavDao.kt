@@ -12,8 +12,6 @@ interface FavDao {
     @Insert
     suspend fun insertWeb(website: Website): Long
 
-    @Update
-    suspend fun updateWeb(newWebsite: Website)
 
     @Query("select * from Website")
     suspend fun loadAllWebs(): List<Website>
@@ -21,6 +19,6 @@ interface FavDao {
     @Query("delete from Website")
     suspend fun deleteAllWebs()
 
-    @Query("delete from Website where siteName = :siteName")
+    @Query("delete from Website where site_name = :siteName")
     suspend fun deleteWebBySiteName(siteName: String): Int
 }

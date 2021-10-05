@@ -1,41 +1,25 @@
 package github.sukieva.hhu.ui.activity.results
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import github.sukieva.hhu.data.repository.RemoteRepository
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.*
 import kotlin.concurrent.thread
 
 class ResultsViewModel : ViewModel() {
 
-    val picFlow = MutableStateFlow(ImageBitmap(100, 100))
-    lateinit var bitmap: ImageBitmap
+    var bitmapFlag: Boolean = false
+    var bitmap = mutableStateOf(ImageBitmap(20, 20))
 
-    init {
-        getPic()
-    }
-
-    fun getPic() {
+    fun getCaptchaPic() {
         thread {
-            bitmap = RemoteRepository.getBitmap().asImageBitmap()
+            RemoteRepository.getCaptchaPic()?.let {
+                bitmap.value = it.asImageBitmap()
+            }
         }
+        bitmapFlag = true
     }
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    suspend fun fectchCaptchaPic(name: String) =
-        RemoteRepository.getCaptchaPic()
-            .onStart {
-
-            }
-            .catch {
-                // 捕获上游出现的异常
-            }
-            .onCompletion {
-
-            }.asLiveData()
 
 
 }

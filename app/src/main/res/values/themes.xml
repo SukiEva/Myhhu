@@ -39,6 +39,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AlertDialogStyle" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="android:colorAccent">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorPrimary">@color/teal_200</item>
+    </style>
+
     <style name="Theme.Hhu.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Hhu.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

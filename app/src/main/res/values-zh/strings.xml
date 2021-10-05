@@ -15,6 +15,15 @@
 
     <!-- Favourite -->
     <string name="appbar_reset">重置为默认值</string>
+    <string name="dialog_title">添加网址</string>
+    <string name="dialog_web_name">名称</string>
+    <string name="dialog_web_url">网址</string>
+    <string name="dialog_error_null">不能为空</string>
+    <string name="dialog_error_not_valid">网址无效</string>
+    <string name="dialog_press_message">\n确定移除网址？</string>
+    <string name="dialog_press_confirm">确定</string>
+    <string name="dialog_press_cancel">取消</string>
+
 
     <!--  About  -->
     <string name="settings_about">关于</string>

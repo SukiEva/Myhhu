@@ -1,5 +1,6 @@
 package github.sukieva.hhu.ui.activity.home
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,32 +14,39 @@ import androidx.compose.material.icons.outlined.Extension
 import androidx.compose.material.icons.rounded.ManageSearch
 import androidx.compose.material.icons.rounded.PendingActions
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import github.sukieva.hhu.MyApp
 import github.sukieva.hhu.R
+import github.sukieva.hhu.data.repository.RemoteRepository
 import github.sukieva.hhu.ui.activity.base.InitView
 import github.sukieva.hhu.ui.activity.config.ConfigActivity
 import github.sukieva.hhu.ui.activity.favourite.FavouriteActivity
 import github.sukieva.hhu.ui.activity.results.ResultsActivity
 import github.sukieva.hhu.ui.components.*
 import github.sukieva.hhu.ui.theme.Teal200
-import github.sukieva.hhu.utils.infoToast
-import github.sukieva.hhu.utils.start
+import github.sukieva.hhu.utils.*
 
 
 @Composable
 fun HomeView() {
     InitView {
-        HomeAppBar()
-        CardCheckIn()
-        CardGradeQuery()
-        CardSchedule()
-        ListCardFavourite()
-        ListCardConfig()
+        MyScaffold(
+            topBar = { HomeAppBar() },
+            content = {
+                CardCheckIn()
+                CardGradeQuery()
+                CardSchedule()
+                ListCardFavourite()
+                ListCardConfig()
+            }
+        )
     }
 }
 
@@ -70,8 +78,20 @@ fun CardGradeQuery() {
 fun CardSchedule() {
     CardItem(
         title = stringResource(id = R.string.home_card_schedule),
-        body = "今天无课",
-        icon = Icons.Rounded.PendingActions
+        body = getDate(),
+        icon = Icons.Rounded.PendingActions,
+        onClick = {
+            try {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.setClassName("com.suda.yzune.wakeupschedule", "com.suda.yzune.wakeupschedule.SplashActivity")
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                MyApp.context.startActivity(intent)
+            } catch (e: Exception) {
+                "Wakeup Not Installed!".errorToast()
+                LogUtil.d("CardSchedule", "Schedule Error: not installed")
+                e.printStackTrace()
+            }
+        }
     )
 }
 
@@ -100,6 +120,7 @@ fun ListCardConfig() {
 
 @Composable
 fun HomeAppBar() {
+    val hitoko by RemoteRepository.getHitokoto().collectAsState(initial = stringResource(id = R.string.home_subtitle))
     MaterialAppBar(
         modifier = Modifier.padding(top = 20.dp, bottom = 20.dp),
         title = {
@@ -107,9 +128,7 @@ fun HomeAppBar() {
                 Text(text = stringResource(id = R.string.app_name), style = MaterialTheme.typography.h6)
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    text = stringResource(
-                        id = R.string.home_subtitle
-                    ),
+                    text = hitoko,
                     color = Teal200,
                     style = MaterialTheme.typography.subtitle2,
                     maxLines = 1,

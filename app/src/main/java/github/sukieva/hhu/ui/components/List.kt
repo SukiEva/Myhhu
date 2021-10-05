@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
-import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -17,29 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import github.sukieva.hhu.ui.theme.fontBody
 import github.sukieva.hhu.ui.theme.fontHead
-
-
-
-@Composable
-fun MyListItem(
-    modifier: Modifier = Modifier,
-    title: String = "Title",
-    icon: ImageVector = Icons.Outlined.TravelExplore,
-    onClick: () -> Unit = {},
-){
-    ListCard(
-        modifier = modifier
-            .padding(start = 5.dp, end = 5.dp, top = 12.dp,bottom = 12.dp)
-            .fillMaxWidth()
-            .height(50.dp)
-            .clickable { onClick() },
-        title = title,
-        icon = icon
-    )
-}
-
-
-
 
 
 @Composable
@@ -65,8 +41,7 @@ fun ListCardItem(
 fun ListCard(
     modifier: Modifier = Modifier,
     title: String = "Title",
-    icon: ImageVector = Icons.Outlined.TravelExplore,
-    //onClick: () -> Unit = {},
+    icon: ImageVector = Icons.Outlined.TravelExplore
 ) {
     Card(
         modifier = modifier,

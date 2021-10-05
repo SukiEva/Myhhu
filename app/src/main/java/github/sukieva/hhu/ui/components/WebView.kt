@@ -24,7 +24,7 @@ import github.sukieva.hhu.utils.LogUtil
 import github.sukieva.hhu.utils.errorToast
 import kotlinx.coroutines.launch
 
-@SuppressLint("SetJavaScriptEnabled")
+@SuppressLint("JavascriptInterface", "SetJavaScriptEnabled")
 @Composable
 fun MyWebView(
     url: String = "https://github.com/SukiEva"
@@ -105,6 +105,11 @@ fun CustomWebView(
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
             onProgressChange(100)
+            view!!.loadUrl(
+                "javascript:window.java_obj.getSource("
+                        + "document.getElementsByTagName('html')[0].innerHTML);"
+            )
+            //println(InJavaScriptLocalObj.webHtml)
         }
 
         override fun shouldOverrideUrlLoading(
@@ -150,6 +155,7 @@ fun CustomWebView(
             this.webChromeClient = webViewChromeClient
             //回调webSettings供调用方设置webSettings的相关配置
             initSettings(this.settings)
+            addJavascriptInterface(InJavaScriptLocalObj, "java_obj")
             webView = this
             loadUrl(url)
         }
@@ -162,3 +168,13 @@ fun CustomWebView(
         }
     }
 }
+
+object InJavaScriptLocalObj {
+    var webHtml: String? = null
+
+    @JavascriptInterface
+    fun getSource(html: String?) {
+        webHtml = html
+    }
+}
+
