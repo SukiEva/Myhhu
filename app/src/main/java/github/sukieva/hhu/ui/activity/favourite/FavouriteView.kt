@@ -24,7 +24,10 @@ import github.sukieva.hhu.MyApp
 import github.sukieva.hhu.R
 import github.sukieva.hhu.data.entity.Website
 import github.sukieva.hhu.ui.activity.base.InitView
-import github.sukieva.hhu.ui.components.*
+import github.sukieva.hhu.ui.components.ListCard
+import github.sukieva.hhu.ui.components.MaterialTopAppBar
+import github.sukieva.hhu.ui.components.MyScaffold
+import github.sukieva.hhu.ui.components.MyWebView
 import github.sukieva.hhu.ui.theme.fontHead
 import github.sukieva.hhu.utils.*
 
@@ -53,6 +56,7 @@ fun FavouriteView(siteAddress: String? = null, siteName: String? = null) {
         }
     }
 }
+
 
 @Composable
 fun FavListItem(website: Website) {

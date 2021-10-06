@@ -35,7 +35,7 @@ fun CardItem(
             .fillMaxWidth()
             .height(cardHeight)
             .clickable { onClick() },
-        elevation = 1.dp,
+        elevation = 2.dp,
         shape = MaterialTheme.shapes.small,
         backgroundColor = when {
             isLarge && isActive -> MaterialTheme.colors.cardFlash

@@ -17,25 +17,33 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.insets.ProvideWindowInsets
 import github.sukieva.hhu.R
 import github.sukieva.hhu.ui.activity.base.InitView
-import github.sukieva.hhu.ui.components.ExpandableCard
-import github.sukieva.hhu.ui.components.ListCard
-import github.sukieva.hhu.ui.components.MaterialTopAppBar
-import github.sukieva.hhu.ui.components.MyScaffold
+import github.sukieva.hhu.ui.components.*
 import github.sukieva.hhu.ui.theme.fontHead
 import github.sukieva.hhu.utils.LogUtil
 import github.sukieva.hhu.utils.browse
+import github.sukieva.hhu.utils.warningToast
 
 
 @ExperimentalMaterialApi
 @Composable
 fun ConfigView() {
     val model: ConfigViewModel = viewModel()
+    if (model.isFetchData) {
+        InitView {
+            MyScaffold(topBar = { ConfigWebAppBar() }) {
+                MyWebView(model.configUrl)
+            }
+        }
+        return
+    }
     model.showConfig()
     ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
         InitView {
@@ -77,11 +85,12 @@ fun GradeItem() {
             Column {
                 MyTextField(
                     state = accountState,
-                    label = "学号"
+                    label = stringResource(id = R.string.config_account)
                 )
                 MyTextField(
                     state = passwordState,
-                    label = "教务系统密码"
+                    label = stringResource(id = R.string.config_password),
+                    visualTransformation = PasswordVisualTransformation()
                 )
             }
         }
@@ -102,17 +111,32 @@ fun CheckInItem() {
             val aid = remember { model.aid }
             val institute = remember { model.institute }
             val grade = remember { model.grade }
+            val major = remember { model.major }
             val mclass = remember { model.mclass }
             val building = remember { model.building }
             val room = remember { model.room }
             val phone = remember { model.phone }
-            Text(
-                text = "请对照健康打卡填写\n还需填写上面的学号",
-                color = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.medium),
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier.padding(start = 35.dp)
-            )
+            val place = remember { model.place }
+            Row {
+                Text(
+                    text = "请对照健康打卡填写\n还需填写上面的学号",
+                    color = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.medium),
+                    style = MaterialTheme.typography.caption,
+                    modifier = Modifier.padding(start = 35.dp)
+                )
+                OutlinedButton(
+                    onClick = { model.fetchData() },
+                    modifier = Modifier.padding(start = 80.dp)
+                ) {
+                    Text(text = stringResource(id = R.string.config_autofill))
+                }
+            }
+
             Column {
+                MyTextField(
+                    state = place,
+                    label = stringResource(id = R.string.config_place)
+                )
                 MyTextField(
                     state = wid,
                     label = "wid（无需修改 自动填写）",
@@ -120,35 +144,39 @@ fun CheckInItem() {
                 )
                 MyTextField(
                     state = name,
-                    label = "姓名"
+                    label = stringResource(id = R.string.config_name)
                 )
                 MyTextField(
                     state = aid,
-                    label = "身份证号"
+                    label = stringResource(id = R.string.config_aid)
                 )
                 MyTextField(
                     state = institute,
-                    label = "学院"
+                    label = stringResource(id = R.string.config_institute)
                 )
                 MyTextField(
                     state = grade,
-                    label = "年级"
+                    label = stringResource(id = R.string.config_grade)
+                )
+                MyTextField(
+                    state = major,
+                    label = stringResource(id = R.string.config_major)
                 )
                 MyTextField(
                     state = mclass,
-                    label = "班级"
+                    label = stringResource(id = R.string.config_class)
                 )
                 MyTextField(
                     state = building,
-                    label = "宿舍楼"
+                    label = stringResource(id = R.string.config_building)
                 )
                 MyTextField(
                     state = room,
-                    label = "宿舍号"
+                    label = stringResource(id = R.string.config_room)
                 )
                 MyTextField(
                     state = phone,
-                    label = "电话号码"
+                    label = stringResource(id = R.string.config_phone)
                 )
             }
         }
@@ -161,7 +189,8 @@ fun CheckInItem() {
 fun MyTextField(
     state: MutableState<String>,
     label: String,
-    readOnly: Boolean = false
+    readOnly: Boolean = false,
+    visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
     Row(
         modifier = Modifier
@@ -172,13 +201,14 @@ fun MyTextField(
         OutlinedTextField(
             value = state.value,
             readOnly = readOnly,
+            visualTransformation = visualTransformation,
             onValueChange = { state.value = it },
             label = { Text(label) },
             textStyle = TextStyle(color = MaterialTheme.colors.fontHead),
             trailingIcon = @Composable {
-                Image(imageVector = Icons.Filled.Clear, // 清除图标
+                Image(imageVector = Icons.Filled.Clear,
                     contentDescription = null,
-                    modifier = Modifier.clickable { state.value = "" }) // 给图标添加点击事件，点击就清空text
+                    modifier = Modifier.clickable { state.value = "" })
             },
             modifier = Modifier.width(300.dp)
         )
@@ -195,6 +225,22 @@ fun ConfigAppBar() {
             IconButton(onClick = {
                 model.saveConfig()
                 LogUtil.d("ConfigAppBar", "Save config")
+            }) {
+                Icon(Icons.Outlined.Save, contentDescription = "Save config")
+            }
+        }
+    )
+}
+
+@Composable
+fun ConfigWebAppBar() {
+    val model: ConfigViewModel = viewModel()
+    MaterialTopAppBar(
+        title = stringResource(id = R.string.home_list_config),
+        actions = {
+            IconButton(onClick = {
+                model.saveFetchData()
+                LogUtil.d("ConfigAppBar", "Fetch data")
             }) {
                 Icon(Icons.Outlined.Save, contentDescription = "Save config")
             }

@@ -4,7 +4,7 @@
 
     <!--  Home  -->
     <string name="home_subtitle">May you be faithful to yourself</string>
-    <string name="home_menu_exit">Exit</string>
+    <string name="home_menu_update">Update</string>
     <string name="home_menu_issue">Report an issue</string>
     <string name="home_menu_about">About</string>
     <string name="home_card_checkin">Health Report</string>
@@ -12,6 +12,9 @@
     <string name="home_card_schedule">Class Schedule</string>
     <string name="home_list_favourite">Favorites</string>
     <string name="home_list_config">Config</string>
+    <string name="home_checkin_true">Already clocked in</string>
+    <string name="home_checkin_false">Not clocked in</string>
+    <string name="home_wakeup">Wakeup not installed</string>
 
     <!-- Favourite -->
     <string name="appbar_reset">Reset to default</string>
@@ -24,6 +27,25 @@
     <string name="dialog_press_confirm">Confirm</string>
     <string name="dialog_press_cancel">Cancel</string>
 
+    <!--  Config  -->
+    <string name="config_autofill">Autofill</string>
+    <string name="config_account">Student ID</string>
+    <string name="config_password">Jwxt password</string>
+    <string name="config_place">In/Out of School</string>
+    <string name="config_name">Name</string>
+    <string name="config_aid">ID number</string>
+    <string name="config_institute">Institute</string>
+    <string name="config_grade">Grade</string>
+    <string name="config_major">Major</string>
+    <string name="config_class">Class</string>
+    <string name="config_building">Dormitory</string>
+    <string name="config_room">Room</string>
+    <string name="config_phone">Phone number</string>
+    <string name="config_save_config">Saved configuration</string>
+    <string name="config_fetch_data">No information yet</string>
+    <string name="config_login_in">please log in first</string>
+    <string name="config_student_id">Please fill in the Student Id</string>
+
     <!--  About  -->
     <string name="settings_about">About</string>
     <string name="about_info">A third-party app for hhuers</string>
@@ -32,4 +54,9 @@
     <string name="error_not_found_app">Can\'t find related apps</string>
     <string name="error_happen">Something went wrong</string>
 
+    <!--  Results  -->
+    <string name="results_dialog_yzm">Verification code</string>
+    <string name="results_title">Results</string>
+    <string name="results_dialog_title">Please enter verification code</string>
+    <string name="results_config_null">Please add configuration first</string>
 </resources>

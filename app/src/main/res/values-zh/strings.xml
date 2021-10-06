@@ -4,7 +4,7 @@
 
     <!--  Home  -->
     <string name="home_subtitle">愿你对自己忠诚</string>
-    <string name="home_menu_exit">退出</string>
+    <string name="home_menu_update">更新</string>
     <string name="home_menu_issue">反馈</string>
     <string name="home_menu_about">关于</string>
     <string name="home_card_checkin">健康打卡</string>
@@ -12,6 +12,9 @@
     <string name="home_card_schedule">课表</string>
     <string name="home_list_favourite">收藏</string>
     <string name="home_list_config">配置</string>
+    <string name="home_checkin_true">已打卡</string>
+    <string name="home_checkin_false">未打卡</string>
+    <string name="home_wakeup">未安装Wakeup课程表</string>
 
     <!-- Favourite -->
     <string name="appbar_reset">重置为默认值</string>
@@ -25,6 +28,26 @@
     <string name="dialog_press_cancel">取消</string>
 
 
+    <!--  Config  -->
+    <string name="config_autofill">自动填写</string>
+    <string name="config_account">学号</string>
+    <string name="config_password">教务系统密码</string>
+    <string name="config_place">校内/校外</string>
+    <string name="config_name">姓名</string>
+    <string name="config_aid">身份证号</string>
+    <string name="config_institute">学院</string>
+    <string name="config_grade">年级</string>
+    <string name="config_major">专业</string>
+    <string name="config_class">班级</string>
+    <string name="config_building">宿舍楼</string>
+    <string name="config_room">宿舍号</string>
+    <string name="config_phone">电话号码</string>
+    <string name="config_save_config">已保存配置</string>
+    <string name="config_fetch_data">未获取到信息</string>
+    <string name="config_login_in">请先登录</string>
+    <string name="config_student_id">请填写学号</string>
+
+
     <!--  About  -->
     <string name="settings_about">关于</string>
     <string name="about_info">河海大学第三方E河海</string>
@@ -32,4 +55,10 @@
     <!--  WebView  -->
     <string name="error_not_found_app">未找到相关应用</string>
     <string name="error_happen">出错啦</string>
+
+    <!--  Results  -->
+    <string name="results_dialog_yzm">验证码</string>
+    <string name="results_title">成绩</string>
+    <string name="results_dialog_title">请输入验证码</string>
+    <string name="results_config_null">请先配置信息</string>
 </resources>
