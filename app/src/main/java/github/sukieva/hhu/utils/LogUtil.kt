@@ -13,7 +13,7 @@ object LogUtil {
 
     private const val ERROR = 5
 
-    private const val level = ERROR
+    private const val level = VERBOSE
 
     fun v(tag: String, msg: String) {
         if (level <= VERBOSE) Log.v(tag, msg)

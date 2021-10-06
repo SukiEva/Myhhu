@@ -1,4 +1,4 @@
-package github.sukieva.hhu.data.bean
+package github.sukieva.hhu.data.entity.bean
 
 data class Rank(
     var name: String,

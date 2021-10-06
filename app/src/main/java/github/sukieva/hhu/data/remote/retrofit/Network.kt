@@ -1,24 +1,24 @@
-package github.sukieva.hhu.network
+package github.sukieva.hhu.data.remote.retrofit
 
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import github.sukieva.hhu.data.bean.LoginData
+import github.sukieva.hhu.data.entity.bean.LoginData
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-object JwxtNetwork {
+object Network {
 
-    private val jwxtService = ServiceCreator.create<JwxtService>()
+    private val service = ServiceCreator.create<Api>()
 
-    suspend fun login(data: LoginData) = jwxtService.login(data).await()
+    suspend fun login(data: LoginData) = service.login(data).await()
 
-    suspend fun getCaptchaPic() = jwxtService.getCaptchaPic().await()
+    suspend fun getCaptchaPic() = service.getCaptchaPic().await()
 
-    suspend fun getGrades() = jwxtService.getGrades().await()
+    suspend fun getGrades() = service.getGrades().await()
 
-    suspend fun getRank() = jwxtService.getRank().await()
+    suspend fun getRank() = service.getRank().await()
 
 
     private suspend fun <T> Call<T>.await(): T {

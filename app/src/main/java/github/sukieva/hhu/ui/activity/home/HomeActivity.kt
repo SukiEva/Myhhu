@@ -1,18 +1,20 @@
-package github.sukieva.hhu.ui.activity
+package github.sukieva.hhu.ui.activity.home
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import github.sukieva.hhu.ui.activity.base.BaseActivity
-import github.sukieva.hhu.ui.activity.base.InitView
-import github.sukieva.hhu.ui.components.MaterialTopAppBar
+import github.sukieva.hhu.utils.errorToast
 
-class ConfigActivity : BaseActivity() {
+class HomeActivity : BaseActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            InitView {
-                MaterialTopAppBar()
-            }
+            HomeView()
         }
     }
+
+
 }
+

@@ -1,12 +1,13 @@
-package github.sukieva.hhu.data.bean
+package github.sukieva.hhu.data.entity.bean
+
 
 import java.math.BigInteger
 import java.security.MessageDigest
 
+
 data class LoginData(
     var username: String,
-    var password: String,
-    var captcha: String
+    var password: String
 ) {
     init { // md5 加密(小写字母+数字)
         val md = MessageDigest.getInstance("MD5")

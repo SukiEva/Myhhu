@@ -20,14 +20,20 @@ dependencyResolutionManagement {
             val accompanistVersion = "0.18.0"
             val lifecycleVersion = "2.4.0-beta01"
             val retrofitVersion = "2.9.0"
+            val roomVersion = "2.3.0"
+
 
             // AndroidX
             alias("androidx-core").to("androidx.core:core-ktx:1.6.0")
             alias("androidx-activityCompose").to("androidx.activity:activity-compose:1.3.1")
+            alias("androidx-datastorePreferences").to("androidx.datastore:datastore-preferences:1.0.0")
+            alias("google-material").to("com.google.android.material:material:1.4.0")
             bundle(
                 "androidx", listOf(
                     "androidx-core",
-                    "androidx-activityCompose"
+                    "androidx-activityCompose",
+                    "google-material",
+                    "androidx-datastorePreferences" // DataStore Preferences
                 )
             )
 
@@ -41,7 +47,7 @@ dependencyResolutionManagement {
 
             // Compose
             alias("compose-ui").to("androidx.compose.ui:ui:$composeVersion")
-            alias("compose-toolingPreview").to("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+            alias("compose-uiToolingPreview").to("androidx.compose.ui:ui-tooling-preview:$composeVersion")
             alias("compose-foundation").to("androidx.compose.foundation:foundation:$composeVersion")
             alias("compose-material").to("androidx.compose.material:material:$composeVersion")
             alias("compose-materialIcons").to("androidx.compose.material:material-icons-core:$composeVersion")
@@ -50,12 +56,11 @@ dependencyResolutionManagement {
             bundle(
                 "compose", listOf(
                     "compose-ui",
-                    "compose-toolingPreview", // Tooling support (Previews, etc.)
+                    "compose-uiToolingPreview", // Tooling support (Previews, etc.)
                     "compose-foundation", // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
                     "compose-material", // Material Design
                     "compose-materialIcons", // Material design icons
-                    "compose-materialIconsExtended",
-                    "compose-uiTestJunit" // UI Tests
+                    "compose-materialIconsExtended"
                 )
             )
 
@@ -73,11 +78,13 @@ dependencyResolutionManagement {
 
             // Lifecycle
             alias("lifecycle-viewmodelCompose").to("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
-            alias("lifecycle-runtimeKtx").to("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+            alias("lifecycle-runtimeKtx").to("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+            alias("lifecycle-livedataKtx").to("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
             bundle(
                 "lifecycle", listOf(
-                    "lifecycle-viewmodelCompose",
-                    "lifecycle-runtimeKtx"
+                    "lifecycle-viewmodelCompose", // viewModel
+                    "lifecycle-runtimeKtx", // Lifecycles only (without ViewModel or LiveData)
+                    "lifecycle-livedataKtx", // liveData
                 )
             )
 
@@ -91,15 +98,27 @@ dependencyResolutionManagement {
                 )
             )
 
+            // Room
+            alias("room-runtime").to("androidx.room:room-runtime:$roomVersion")
+            alias("room-ktx").to("androidx.room:room-ktx:$roomVersion")
+            bundle(
+                "room", listOf(
+                    "room-runtime",
+                    "room-ktx"
+                )
+            )
+
             // Third Party
             alias("drakeet-about").to("com.drakeet.about:about:2.4.1")
             alias("drakeet-multitype").to("com.drakeet.multitype:multitype:4.3.0")
             alias("github-toasty").to("com.github.GrenderG:Toasty:1.5.2")
+            alias("coil-compose").to("io.coil-kt:coil-compose:1.3.2")
             bundle(
                 "thirdparty", listOf(
                     "drakeet-about",
                     "drakeet-multitype",
-                    "github-toasty"
+                    "github-toasty",
+                    "coil-compose" // 网络加载远程图片
                 )
             )
         }

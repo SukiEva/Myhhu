@@ -13,20 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hhu.NoActionBar"
         android:usesCleartextTraffic="true">
-
         <activity
-            android:name=".ui.activity.ConfigActivity"
+            android:name=".ui.activity.results.ResultsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.FavouriteActivity"
+            android:name=".ui.activity.config.ConfigActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.activity.favourite.FavouriteActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.AboutActivity"
+            android:name=".ui.activity.about.AboutActivity"
             android:exported="false"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme.About" />
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.activity.home.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
