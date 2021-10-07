@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.lifecycle.ViewModelProvider
 import github.sukieva.hhu.ui.activity.base.BaseActivity
+import github.sukieva.hhu.utils.ActivityCollector
 
 class ResultsActivity : BaseActivity() {
 
@@ -17,8 +18,11 @@ class ResultsActivity : BaseActivity() {
         setContent {
             ResultsView()
         }
-
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        ActivityCollector.finishTopActivity()
+    }
 
 }

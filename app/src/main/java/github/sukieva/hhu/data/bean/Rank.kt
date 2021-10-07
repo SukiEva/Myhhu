@@ -10,5 +10,9 @@ data class Rank(
     var gradePoint: Double,
     var grade: Double,
     var Rank: Int
-)
+) {
+    constructor() : this(
+        "Error", "Error", 999, 5.0, 100.0, 1, 5.0, 100.0, 1
+    )
+}
 

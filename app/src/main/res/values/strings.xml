@@ -59,4 +59,6 @@
     <string name="results_title">Results</string>
     <string name="results_dialog_title">Please enter verification code</string>
     <string name="results_config_null">Please add configuration first</string>
+    <string name="results_bottom_grades">Grades</string>
+    <string name="results_bottom_rank">Rank</string>
 </resources>

@@ -3,29 +3,20 @@ package github.sukieva.hhu.ui.components
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.TrendingUp
 import androidx.compose.material.icons.outlined.Assessment
 import androidx.compose.material.icons.outlined.TrendingUp
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import github.sukieva.hhu.R
 
 
 @Composable
-fun BottomNav() {
-    val navController = rememberNavController()
-    NavHost(navController, startDestination = "grades") {
-        composable("grades") { GradesScreen() }
-        composable("rank") { RankScreen() }
-    }
-    var selectedItem by remember { mutableStateOf(0) }
-    val items = listOf("成绩", "排名")
+fun BottomNav(navController: NavController) {
+    val items = listOf(stringResource(id = R.string.results_bottom_grades), stringResource(id = R.string.results_bottom_rank))
     BottomNavigation(
         modifier = Modifier.padding(16.dp),
         backgroundColor = MaterialTheme.colors.background,
@@ -40,9 +31,8 @@ fun BottomNav() {
                         Icon(Icons.Outlined.Assessment, contentDescription = null)
                 },
                 label = { Text(item) },
-                selected = selectedItem == index,
+                selected = false,
                 onClick = {
-                    selectedItem = index
                     if (index == 1)
                         navController.navigate("rank")
                     else

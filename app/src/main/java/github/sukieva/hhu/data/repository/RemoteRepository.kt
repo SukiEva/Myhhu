@@ -61,7 +61,7 @@ object RemoteRepository {
             LogUtil.d(TAG, "Fail to get rank")
             e.printStackTrace()
         }
-        return Rank("Error", "Error", 999, 5.0, 100.0, 1, 5.0, 100.0, 1)
+        return Rank()
     }
 
     suspend fun getGrades(): MutableList<Course>? {

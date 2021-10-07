@@ -17,12 +17,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import github.sukieva.hhu.R
 import github.sukieva.hhu.ui.activity.base.InitView
-import github.sukieva.hhu.ui.components.BottomNav
-import github.sukieva.hhu.ui.components.GradesScreen
-import github.sukieva.hhu.ui.components.MaterialTopAppBar
-import github.sukieva.hhu.ui.components.MyScaffold
+import github.sukieva.hhu.ui.components.*
 import github.sukieva.hhu.ui.theme.fontHead
 import github.sukieva.hhu.utils.ActivityCollector
 
@@ -30,19 +30,12 @@ import github.sukieva.hhu.utils.ActivityCollector
 @Composable
 fun ResultsView() {
     val model: ResultsViewModel = viewModel()
-    InitView {
-        MyScaffold(
-            topBar = {
-                MaterialTopAppBar(title = stringResource(id = R.string.results_title))
-            },
-            bottomBar = {
-                BottomNav()
-            }
-        ) {
-//            if (!model.isLogin) LoginDialog()
-//            else model.getResults()
-            GradesScreen()
-        }
+//    if (!model.isLogin) LoginDialog()
+//    else model.getResults()
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "grades") {
+        composable("grades") { GradesScreen(navController) }
+        composable("rank") { RankScreen(navController) }
     }
 }
 

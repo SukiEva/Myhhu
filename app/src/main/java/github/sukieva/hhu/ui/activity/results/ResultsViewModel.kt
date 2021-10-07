@@ -22,7 +22,7 @@ class ResultsViewModel : ViewModel() {
     var yzm = mutableStateOf("")
 
     var grades: MutableList<Course>? = mutableListOf()
-    var rank = Rank("Error", "Error", 999, 5.0, 100.0, 1, 5.0, 100.0, 1)
+    var rank = Rank()
 
     fun getResults() {
         viewModelScope.launch {
