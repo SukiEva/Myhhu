@@ -1,6 +1,6 @@
 package github.sukieva.hhu.data.remote.retrofit
 
-import github.sukieva.hhu.data.entity.bean.LoginData
+import github.sukieva.hhu.data.bean.LoginData
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET

@@ -20,3 +20,4 @@ val Colors.cardFlash: Color @Composable get() = if (isLight) Color(0xff01579b) e
 val Colors.fontHead: Color @Composable get() = if (isLight) Color(0xff212121) else Color(0xffffffff)
 val Colors.fontBody: Color @Composable get() = if (isLight) Color(0xff757575) else Color(0xffc7c7c7)
 val Colors.fontFlash: Color @Composable get() = if (isLight) White else Black
+val Colors.canvas:Color @Composable get() = if (isLight) Black else ui_background

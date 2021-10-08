@@ -8,7 +8,8 @@ import androidx.compose.runtime.Composable
 @Composable
 fun MyScaffold(
     topBar: @Composable () -> Unit,
-    content: @Composable () -> Unit
+    bottomBar: @Composable () -> Unit = {},
+    content: @Composable () -> Unit,
 ) {
     Scaffold(
         topBar = topBar,
@@ -16,6 +17,7 @@ fun MyScaffold(
             Column {
                 content()
             }
-        }
+        },
+        bottomBar = bottomBar
     )
 }

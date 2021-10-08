@@ -3,7 +3,7 @@ package github.sukieva.hhu.data.remote.retrofit
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import github.sukieva.hhu.data.entity.bean.LoginData
+import github.sukieva.hhu.data.bean.LoginData
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine

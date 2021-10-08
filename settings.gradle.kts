@@ -17,10 +17,11 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
             val composeVersion = "1.0.2"
-            val accompanistVersion = "0.18.0"
+            val accompanistVersion = "0.19.0"
             val lifecycleVersion = "2.4.0-beta01"
             val retrofitVersion = "2.9.0"
             val roomVersion = "2.3.0"
+            val workVersion = "2.6.0"
 
 
             // AndroidX
@@ -28,12 +29,16 @@ dependencyResolutionManagement {
             alias("androidx-activityCompose").to("androidx.activity:activity-compose:1.3.1")
             alias("androidx-datastorePreferences").to("androidx.datastore:datastore-preferences:1.0.0")
             alias("google-material").to("com.google.android.material:material:1.4.0")
+            alias("androidx-work").to("androidx.work:work-runtime-ktx:$workVersion")
+            alias("androidx-navigation").to("androidx.navigation:navigation-compose:2.4.0-alpha09")
             bundle(
                 "androidx", listOf(
                     "androidx-core",
                     "androidx-activityCompose",
                     "google-material",
-                    "androidx-datastorePreferences" // DataStore Preferences
+                    "androidx-datastorePreferences", // DataStore Preferences
+                    //"androidx-work",
+                    "androidx-navigation"
                 )
             )
 
@@ -67,12 +72,18 @@ dependencyResolutionManagement {
             // Accompanist
             alias("accompanist-insets").to("com.google.accompanist:accompanist-insets:$accompanistVersion")
             alias("accompanist-insetsUi").to("com.google.accompanist:accompanist-insets-ui:$accompanistVersion")
+            alias("accompanist-pager").to("com.google.accompanist:accompanist-pager:$accompanistVersion")
+            alias("accompanist-pagerIndicators").to("com.google.accompanist:accompanist-pager-indicators:$accompanistVersion")
             alias("accompanist-systemuicontroller").to("com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion")
+            alias("accompanist-navigationMaterial").to("com.google.accompanist:accompanist-navigation-material:$accompanistVersion")
             bundle(
                 "accompanist", listOf(
                     "accompanist-insets",
                     "accompanist-insetsUi",
-                    "accompanist-systemuicontroller"
+                    "accompanist-pager",
+                    "accompanist-pagerIndicators",
+                    "accompanist-systemuicontroller",
+                    //"accompanist-navigationMaterial"
                 )
             )
 
@@ -113,12 +124,14 @@ dependencyResolutionManagement {
             alias("drakeet-multitype").to("com.drakeet.multitype:multitype:4.3.0")
             alias("github-toasty").to("com.github.GrenderG:Toasty:1.5.2")
             alias("coil-compose").to("io.coil-kt:coil-compose:1.3.2")
+            alias("org-jsoup").to("org.jsoup:jsoup:1.14.3")
             bundle(
                 "thirdparty", listOf(
                     "drakeet-about",
                     "drakeet-multitype",
                     "github-toasty",
-                    "coil-compose" // 网络加载远程图片
+                    "org-jsoup",
+                    //"coil-compose" // 网络加载远程图片
                 )
             )
         }

@@ -30,10 +30,10 @@ fun HomeMenu() {
             onDismissRequest = { expanded = false }
         ) {
             DropdownMenuItem(onClick = {
-                ActivityCollector.finishAllActivity()
+                browse("https://github.com/SukiEva/Myhhu/releases")
                 expanded = false
             }) {
-                MaterialFont(stringResource(id = R.string.home_menu_exit))
+                MaterialFont(stringResource(id = R.string.home_menu_update))
             }
             Divider()
             DropdownMenuItem(onClick = {

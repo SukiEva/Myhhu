@@ -2,19 +2,24 @@ package github.sukieva.hhu.data.repository
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import coil.request.ImageRequest
+import github.sukieva.hhu.MyApp.Companion.context
+import github.sukieva.hhu.R
+import github.sukieva.hhu.data.bean.Course
+import github.sukieva.hhu.data.bean.Rank
 import github.sukieva.hhu.data.remote.EasyOkhttp
-import github.sukieva.hhu.utils.LogUtil
+import github.sukieva.hhu.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import okhttp3.Call
-import okhttp3.Callback
+import okhttp3.FormBody
 import okhttp3.Request
-import okhttp3.Response
-import java.io.IOException
+import okhttp3.RequestBody
+import org.json.JSONArray
+import org.json.JSONObject
+import org.jsoup.Jsoup
 import java.io.InputStream
-import kotlin.concurrent.thread
+import java.math.BigInteger
+import java.security.MessageDigest
 
 object RemoteRepository {
 
@@ -24,6 +29,101 @@ object RemoteRepository {
     private const val gradesUrl = BASE_URL + "student/integratedQuery/scoreQuery/schemeScores/callback"
     private const val rankUrl = BASE_URL + "student/integratedQuery/gpaRankingQuery/index/jdpmcx"
     private const val TAG = "HTTP"
+
+
+    suspend fun getRank(): Rank {
+        try {
+            val rankhtml = EasyOkhttp.request(rankUrl)
+            val parse = Jsoup.parse(rankhtml)
+            var cnt = 1
+            while (cnt <= 10) {
+                try {
+                    val infos = parse.getElementsByClass("report1_$cnt")
+                    val rankinfos = Rank(
+                        infos[2].text(), // 姓名
+                        infos[3].text(), // 专业
+                        infos[4].text(), // 专业人数
+                        infos[5].text(), // 平均绩点
+                        infos[6].text(), // 平均成绩
+                        infos[7].text(), // 平均排名
+                        infos[8].text(), // 推优绩点
+                        infos[9].text(), // 推优成绩
+                        infos[10].text() // 推优排名
+                    )
+                    LogUtil.i(TAG, "Get rank successfully")
+                    return rankinfos
+                } catch (e: Exception) {
+                    LogUtil.d(TAG, "Fail to get rank, tried $cnt times")
+                    cnt++
+                }
+            }
+        } catch (e: Exception) {
+            LogUtil.d(TAG, "Fail to get rank, http error")
+        }
+
+        return Rank()
+    }
+
+    suspend fun getGrades(): MutableList<Course>? {
+        val gradesinfos: MutableList<Course> = mutableListOf()
+        try {
+            val gradeshtml = EasyOkhttp.request(gradesUrl)
+            val lessons = JSONArray(gradeshtml).optJSONObject(0).getJSONArray("cjList")
+            for (i in 0 until lessons.length()) {
+                val lesson = JSONObject(lessons[i].toString())
+                val course = Course()
+                course.courseName = lesson.getString("courseName")
+                course.courseAttributeName = lesson.getString("courseAttributeName")
+                course.courseScore = lesson.getString("courseScore")
+                course.gradePointScore = lesson.getString("gradePointScore")
+                course.credit = lesson.getString("credit")
+                course.academicYearCode =
+                    lesson.getString("academicYearCode") + "-" + lesson.getInt("termCode")
+                gradesinfos.add(course)
+            }
+            LogUtil.i(TAG, "Get grades Successfully")
+            return gradesinfos
+        } catch (e: Exception) {
+            LogUtil.d(TAG, "Fail to get grades")
+            e.printStackTrace()
+            return null
+        }
+    }
+
+    suspend fun login(yzm: String): Boolean {
+        val loginData = getLoginData(yzm) ?: return false
+        return try {
+            val html = EasyOkhttp.request(loginUrl, loginData)
+            if ("<title>URP综合教务系统首页</title>" in html) {
+                LogUtil.d(TAG, "==> Login successfully")
+                "登录成功".successToast()
+                true
+            } else {
+                LogUtil.d(TAG, "==> Fail to login")
+                "验证码或信息错误".errorToast()
+                false
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            LogUtil.d(TAG, "==> Fail to login")
+            "服务器错误".errorToast()
+            false
+        }
+    }
+
+    private suspend fun getLoginData(yzm: String): RequestBody? {
+        val account = DataManager.readData("account", "")
+        val password = DataManager.readData("password", "")
+        if (account == "" || password == "") {
+            context.getString(R.string.results_config_null).errorToast()
+            return null
+        }
+        return FormBody.Builder()
+            .add("j_username", account)
+            .add("j_password", md5(password))
+            .add("j_captcha", yzm)
+            .build()
+    }
 
 
     fun getCaptchaPic(): Bitmap? {
@@ -49,9 +149,16 @@ object RemoteRepository {
             LogUtil.d("Hitokoto", "==> Hitokoto is $hitoko")
             emit(hitoko)
         } catch (e: Exception) {
-            e.printStackTrace()
+            //e.printStackTrace()
             LogUtil.d("Hitokoto", "Fail to get Hitokoto")
         }
     }.flowOn(Dispatchers.IO)
+
+
+    private fun md5(password: String): String {
+        val md = MessageDigest.getInstance("MD5")
+        md.update(password.toByteArray())
+        return BigInteger(1, md.digest()).toString(16)
+    }
 
 }

@@ -16,12 +16,14 @@ import androidx.compose.material.icons.rounded.PendingActions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import github.sukieva.hhu.MyApp
 import github.sukieva.hhu.R
 import github.sukieva.hhu.data.repository.RemoteRepository
@@ -31,7 +33,10 @@ import github.sukieva.hhu.ui.activity.favourite.FavouriteActivity
 import github.sukieva.hhu.ui.activity.results.ResultsActivity
 import github.sukieva.hhu.ui.components.*
 import github.sukieva.hhu.ui.theme.Teal200
-import github.sukieva.hhu.utils.*
+import github.sukieva.hhu.utils.LogUtil
+import github.sukieva.hhu.utils.errorToast
+import github.sukieva.hhu.utils.getDate
+import github.sukieva.hhu.utils.start
 
 
 @Composable
@@ -53,12 +58,20 @@ fun HomeView() {
 
 @Composable
 fun CardCheckIn() {
+    val model: HomeViewModel = viewModel()
+    val isTodayCheckIn = remember { model.isTodayCheckIn }
+    model.getCheckInStatus()
     CardItem(
         isLarge = true,
-        isActive = true,
-        onClick = { "点击了".infoToast() },
+        isActive = isTodayCheckIn.value,
+        onClick = {
+            model.checkIn()
+        },
         title = stringResource(id = R.string.home_card_checkin),
-        body = "已经打卡"
+        body = if (isTodayCheckIn.value)
+            stringResource(id = R.string.home_checkin_true)
+        else
+            stringResource(id = R.string.home_checkin_false)
     )
 }
 
@@ -66,7 +79,7 @@ fun CardCheckIn() {
 fun CardGradeQuery() {
     CardItem(
         title = stringResource(id = R.string.home_card_results),
-        body = "加油",
+        body = "｡^‿^｡",
         icon = Icons.Rounded.ManageSearch,
         onClick = {
             start<ResultsActivity>()
@@ -87,9 +100,9 @@ fun CardSchedule() {
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 MyApp.context.startActivity(intent)
             } catch (e: Exception) {
-                "Wakeup Not Installed!".errorToast()
+                MyApp.context.getString(R.string.home_wakeup).errorToast()
                 LogUtil.d("CardSchedule", "Schedule Error: not installed")
-                e.printStackTrace()
+                //e.printStackTrace()
             }
         }
     )

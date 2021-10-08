@@ -11,13 +11,13 @@ object EasyOkhttp {
 
     val sessionCookieJar = SessionCookieJar()
 
-    val okHttpClient = OkHttpClient().newBuilder()
+    val okHttpClient: OkHttpClient = OkHttpClient().newBuilder()
         .connectTimeout(10, TimeUnit.SECONDS)
         .readTimeout(10, TimeUnit.SECONDS)
         .cookieJar(sessionCookieJar)
         .build()
 
-    fun sendHttpRequest(address: String, body: RequestBody? = null, callback: Callback) {
+    private fun sendHttpRequest(address: String, body: RequestBody? = null, callback: Callback) {
         val request =
             if (body != null) Request.Builder().url(address).post(body).build()
             else Request.Builder().url(address).build()

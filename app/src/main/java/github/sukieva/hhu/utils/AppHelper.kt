@@ -2,17 +2,14 @@ package github.sukieva.hhu.utils
 
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import es.dmoral.toasty.Toasty
 import github.sukieva.hhu.MyApp
 import github.sukieva.hhu.R
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 fun browse(url: String) {
@@ -84,6 +81,13 @@ fun String.errorToast(duration: Int = Toast.LENGTH_SHORT) =
 
 
 fun getDate(): String {
-    val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-    return LocalDateTime.now().format(formatter)
+    val calendar: Calendar = Calendar.getInstance()
+    val y = calendar.get(Calendar.YEAR).toString()
+    var m = (calendar.get(Calendar.MONTH) + 1).toString()
+    var d = calendar.get(Calendar.DAY_OF_MONTH).toString()
+    if (m.toInt() < 10) m = "0$m"
+    if (d.toInt() < 10) d = "0$d"
+    return "$y/$m/$d"
 }
+
+fun notify(title: String? = "", body: String? = "") = NotifyUtil().notify(title, body)

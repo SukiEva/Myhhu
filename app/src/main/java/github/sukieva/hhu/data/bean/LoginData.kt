@@ -1,4 +1,4 @@
-package github.sukieva.hhu.data.entity.bean
+package github.sukieva.hhu.data.bean
 
 
 import java.math.BigInteger
