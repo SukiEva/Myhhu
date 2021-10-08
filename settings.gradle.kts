@@ -37,7 +37,7 @@ dependencyResolutionManagement {
                     "androidx-activityCompose",
                     "google-material",
                     "androidx-datastorePreferences", // DataStore Preferences
-                    "androidx-work",
+                    //"androidx-work",
                     "androidx-navigation"
                 )
             )
@@ -72,12 +72,16 @@ dependencyResolutionManagement {
             // Accompanist
             alias("accompanist-insets").to("com.google.accompanist:accompanist-insets:$accompanistVersion")
             alias("accompanist-insetsUi").to("com.google.accompanist:accompanist-insets-ui:$accompanistVersion")
+            alias("accompanist-pager").to("com.google.accompanist:accompanist-pager:$accompanistVersion")
+            alias("accompanist-pagerIndicators").to("com.google.accompanist:accompanist-pager-indicators:$accompanistVersion")
             alias("accompanist-systemuicontroller").to("com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion")
             alias("accompanist-navigationMaterial").to("com.google.accompanist:accompanist-navigation-material:$accompanistVersion")
             bundle(
                 "accompanist", listOf(
                     "accompanist-insets",
                     "accompanist-insetsUi",
+                    "accompanist-pager",
+                    "accompanist-pagerIndicators",
                     "accompanist-systemuicontroller",
                     //"accompanist-navigationMaterial"
                 )

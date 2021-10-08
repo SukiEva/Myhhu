@@ -32,7 +32,7 @@ object CheckInService {
         val url = "http://dailyreport.hhu.edu.cn/pdc/formDesignApi/dataFormSave?wid=$wid&userId=$account"
         val response = EasyOkhttp.request(address = url, body = getPostBody())
         if ("{\"result\":true}" in response) {
-            "$date 打卡成功".infoToast()
+            "$date 打卡成功".successToast()
             notify("健康打卡", "$date 打卡成功")
             DataManager.saveData("whenCheckIn", date)
         } else {

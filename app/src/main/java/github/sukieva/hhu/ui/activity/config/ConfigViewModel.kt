@@ -1,6 +1,5 @@
 package github.sukieva.hhu.ui.activity.config
 
-import android.content.pm.PackageManager
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -74,7 +73,7 @@ class ConfigViewModel : ViewModel() {
 
     fun saveFetchData() {
         val html = InJavaScriptLocalObj.webHtml
-        if (html == null) MyApp.context.getString(R.string.config_fetch_data).errorToast()
+        if (html == null) context.getString(R.string.config_fetch_data).errorToast()
         else {
             val parse = Jsoup.parse(html)
             val infos = try {

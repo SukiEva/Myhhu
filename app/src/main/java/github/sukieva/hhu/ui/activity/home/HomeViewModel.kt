@@ -19,7 +19,7 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             val date = getDate()
             val lastCheckDate = DataManager.readData("whenCheckIn", "")
-            isTodayCheckIn.value = date == lastCheckDate
+            isTodayCheckIn.value = (date == lastCheckDate)
         }
     }
 
@@ -28,7 +28,7 @@ class HomeViewModel : ViewModel() {
         "打卡中...".infoToast()
         viewModelScope.launch {
             CheckInService.checkIn()
+            getCheckInStatus()
         }
-        getCheckInStatus()
     }
 }

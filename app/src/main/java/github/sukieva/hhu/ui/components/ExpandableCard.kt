@@ -29,7 +29,6 @@ fun ExpandableCard(
     padding: Dp = 12.dp
 ) {
     var expandedState by remember { mutableStateOf(false) }
-
     Card(
         modifier = Modifier
             .fillMaxWidth()

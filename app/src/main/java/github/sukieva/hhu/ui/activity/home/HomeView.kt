@@ -79,7 +79,7 @@ fun CardCheckIn() {
 fun CardGradeQuery() {
     CardItem(
         title = stringResource(id = R.string.home_card_results),
-        body = "加油",
+        body = "｡^‿^｡",
         icon = Icons.Rounded.ManageSearch,
         onClick = {
             start<ResultsActivity>()

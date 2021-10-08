@@ -3,16 +3,16 @@ package github.sukieva.hhu.data.bean
 data class Rank(
     var name: String,
     var major: String,
-    var majorNum: Int,
-    var averageGradePoint: Double,
-    var averageGrade: Double,
-    var averageRank: Int,
-    var gradePoint: Double,
-    var grade: Double,
-    var Rank: Int
+    var majorNum: String,
+    var averageGradePoint: String,
+    var averageGrade: String,
+    var averageRank: String,
+    var gradePoint: String,
+    var grade: String,
+    var rank: String
 ) {
     constructor() : this(
-        "Error", "Error", 999, 5.0, 100.0, 1, 5.0, 100.0, 1
+        "Error", "Error", "999", "5.0", "100.0", "1", "5.0", "100.0", "1"
     )
 }
 

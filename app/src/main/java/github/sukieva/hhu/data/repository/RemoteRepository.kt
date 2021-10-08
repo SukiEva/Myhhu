@@ -7,10 +7,7 @@ import github.sukieva.hhu.R
 import github.sukieva.hhu.data.bean.Course
 import github.sukieva.hhu.data.bean.Rank
 import github.sukieva.hhu.data.remote.EasyOkhttp
-import github.sukieva.hhu.utils.DataManager
-import github.sukieva.hhu.utils.LogUtil
-import github.sukieva.hhu.utils.errorToast
-import github.sukieva.hhu.utils.infoToast
+import github.sukieva.hhu.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -35,32 +32,35 @@ object RemoteRepository {
 
 
     suspend fun getRank(): Rank {
-        var cnt = 1
         try {
             val rankhtml = EasyOkhttp.request(rankUrl)
             val parse = Jsoup.parse(rankhtml)
+            var cnt = 1
             while (cnt <= 10) {
-                val infos = parse.getElementsByClass("report1_$cnt")
-                //[序号，学号，姓名，专业，专业人数，平均绩点，平均成绩，平均排名，推优绩点，推优成绩，推优排名]
-                val rankinfos = Rank(
-                    infos[2].text(), // 姓名
-                    infos[3].text(), // 专业
-                    infos[4].text().toInt(), // 专业人数
-                    infos[5].text().toDouble(), // 平均绩点
-                    infos[6].text().toDouble(), // 平均成绩
-                    infos[7].text().toInt(), // 平均排名
-                    infos[8].text().toDouble(), // 推优绩点
-                    infos[9].text().toDouble(), // 推优成绩
-                    infos[10].text().toInt() // 推优排名
-                )
-                LogUtil.i(TAG, "Get rank successfully")
-                return rankinfos
+                try {
+                    val infos = parse.getElementsByClass("report1_$cnt")
+                    val rankinfos = Rank(
+                        infos[2].text(), // 姓名
+                        infos[3].text(), // 专业
+                        infos[4].text(), // 专业人数
+                        infos[5].text(), // 平均绩点
+                        infos[6].text(), // 平均成绩
+                        infos[7].text(), // 平均排名
+                        infos[8].text(), // 推优绩点
+                        infos[9].text(), // 推优成绩
+                        infos[10].text() // 推优排名
+                    )
+                    LogUtil.i(TAG, "Get rank successfully")
+                    return rankinfos
+                } catch (e: Exception) {
+                    LogUtil.d(TAG, "Fail to get rank, tried $cnt times")
+                    cnt++
+                }
             }
         } catch (e: Exception) {
-            cnt += 1
-            LogUtil.d(TAG, "Fail to get rank")
-            e.printStackTrace()
+            LogUtil.d(TAG, "Fail to get rank, http error")
         }
+
         return Rank()
     }
 
@@ -74,9 +74,9 @@ object RemoteRepository {
                 val course = Course()
                 course.courseName = lesson.getString("courseName")
                 course.courseAttributeName = lesson.getString("courseAttributeName")
-                course.courseScore = lesson.getDouble("courseScore")
-                course.gradePointScore = lesson.getDouble("gradePointScore")
-                course.credit = lesson.getDouble("credit")
+                course.courseScore = lesson.getString("courseScore")
+                course.gradePointScore = lesson.getString("gradePointScore")
+                course.credit = lesson.getString("credit")
                 course.academicYearCode =
                     lesson.getString("academicYearCode") + "-" + lesson.getInt("termCode")
                 gradesinfos.add(course)
@@ -96,7 +96,7 @@ object RemoteRepository {
             val html = EasyOkhttp.request(loginUrl, loginData)
             if ("<title>URP综合教务系统首页</title>" in html) {
                 LogUtil.d(TAG, "==> Login successfully")
-                "登录成功".infoToast()
+                "登录成功".successToast()
                 true
             } else {
                 LogUtil.d(TAG, "==> Fail to login")

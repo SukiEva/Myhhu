@@ -60,6 +60,7 @@
     <string name="results_dialog_yzm">验证码</string>
     <string name="results_title">成绩</string>
     <string name="results_dialog_title">请输入验证码</string>
+    <string name="results_dialog_button">登录</string>
     <string name="results_config_null">请先配置信息</string>
     <string name="results_bottom_grades">成绩</string>
     <string name="results_bottom_rank">排名</string>
