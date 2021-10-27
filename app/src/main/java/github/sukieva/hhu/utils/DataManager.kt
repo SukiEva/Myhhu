@@ -14,7 +14,6 @@ object DataManager {
 
     private var dataStore: DataStore<Preferences> = MyApp.context.dataStore
 
-
     // 异步写入数据
     suspend fun <T> saveData(key: String, value: T) {
         when (value) {
@@ -34,7 +33,7 @@ object DataManager {
             is Int -> dataStore.data.map { it[intPreferencesKey(key)] ?: 0 }
             is Long -> dataStore.data.map { it[longPreferencesKey(key)] ?: 0L }
             is String -> dataStore.data.map { it[stringPreferencesKey(key)] ?: "" }
-            is Boolean -> dataStore.data.map { it[booleanPreferencesKey(key)] ?: Boolean }
+            is Boolean -> dataStore.data.map { it[booleanPreferencesKey(key)] ?: false }
             is Float -> dataStore.data.map { it[floatPreferencesKey(key)] ?: 0f }
             else -> throw IllegalArgumentException("This type can't be read")
         }
